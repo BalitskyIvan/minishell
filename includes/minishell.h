@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/05 22:54:58 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 00:35:48 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <dirent.h>
 # include <errno.h>
+# include <signal.h>
 
 # include "../utils/libft/libft.h"
 # include "../utils/gnl/get_next_line.h"
@@ -58,5 +59,6 @@ int					execute_another_function(t_main *main);
 void				send_custom_error(char *str);
 char				*get_env_value(t_main *main, char *key);
 char				*get_command_patch(t_main *main, char *command);
+void				execute_managers(t_main *main, char *cmd);
 
 #endif
