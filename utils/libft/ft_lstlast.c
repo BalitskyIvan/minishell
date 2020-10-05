@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/05 19:10:27 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
+/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main()
+t_list	*ft_lstlast(t_list *lst)
 {
-    printf(GREEN"Ɛ====> "RESET);
-    return (0);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
