@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   execute_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/05 22:35:17 by mklotz            #+#    #+#             */
-/*   Updated: 2020/05/16 14:05:13 by mklotz           ###   ########.fr       */
+/*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
+/*   Updated: 2020/10/05 22:24:10 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-void	*ft_memset(void *destination, int c, size_t n)
+int		execute_another_function(t_main *main)
 {
-	unsigned char *temp;
+	pid_t	pid;
+	int		status;
 
-	temp = (unsigned char *)destination;
-	while (n > 0)
+	pid = fork();
+	if (pid == 0)
 	{
-		*(temp) = (unsigned char)c;
-		if (n--)
-			temp++;
+		status = execve(main->com->command, main->com->args, main->env);
+		if (status == -1)
+			send_custom_error("Command not found!");
 	}
-	return (destination);
+	else if (pid < 0)
+		send_error();
+	else
+		wait(&pid);
+	return (0);
 }

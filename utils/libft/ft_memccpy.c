@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/06 16:55:48 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 18:50:39 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *source_1, const void *source_2, int c, size_t count)
+void	*ft_memccpy(void *destination, const void *source, int c, size_t n)
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
-	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				i;
 
-	s1 = (unsigned char*)source_1;
-	s2 = (unsigned char*)source_2;
-	i = 0;
-	if (!source_1 && !source_2)
-		return (source_1);
-	while (i < count)
+	i = -1;
+	str1 = (unsigned char *)destination;
+	str2 = (unsigned char *)source;
+	while ((size_t)++i < n)
 	{
-		*s1 = s2[i];
-		s1++;
-		if (s2[i] == (unsigned char)c)
-			return (s1);
-		i++;
+		str1[i] = str2[i];
+		if (str2[i] == (unsigned char)c)
+			return (str1 + i + 1);
 	}
 	return (NULL);
 }

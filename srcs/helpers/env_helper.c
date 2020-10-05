@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   env_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/05 22:35:17 by mklotz            #+#    #+#             */
-/*   Updated: 2020/05/16 14:05:13 by mklotz           ###   ########.fr       */
+/*   Created: 2020/10/05 22:33:04 by mklotz            #+#    #+#             */
+/*   Updated: 2020/10/05 22:42:08 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-void	*ft_memset(void *destination, int c, size_t n)
+char	*get_env_value(t_main *main, char *key)
 {
-	unsigned char *temp;
+	int		i;
+	char	**temp;
+	char	*result;
 
-	temp = (unsigned char *)destination;
-	while (n > 0)
+	i = -1;
+	result = NULL;
+	while (main->env[++i])
 	{
-		*(temp) = (unsigned char)c;
-		if (n--)
-			temp++;
+		temp = ft_split(main->env[i], '=');
+		if (ft_strncmp(temp[0], key, -1) == 0)
+		{
+			result = ft_strdup(temp[1]);
+			free(temp);
+		}
 	}
-	return (destination);
+	return (result);
 }

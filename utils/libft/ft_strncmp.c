@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 17:14:43 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 20:00:58 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *buf1, const char *buf2, size_t count)
+int		ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	unsigned char	*buf1c;
-	unsigned char	*buf2c;
-	size_t			i;
+	int		i;
 
-	i = 0;
-	buf1c = (unsigned char*)buf1;
-	buf2c = (unsigned char*)buf2;
-	if (count != 0)
-	{
-		while (buf1c[i] == buf2c[i] &&
-			i < count - 1 &&
-			buf1c[i] != '\0' && buf2c[i] != '\0')
-			i++;
-	}
-	else
+	if (n == 0)
 		return (0);
-	return (buf1c[i] - buf2c[i]);
+	i = 0;
+	while (str1[i] == str2[i] && str1[i] && str2[i] && (size_t)i < (n - 1))
+		i++;
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }

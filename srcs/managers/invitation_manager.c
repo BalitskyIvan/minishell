@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 20:03:15 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/05 22:46:23 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	get_invitation(void)
 	if (word == 2)
 		word = 0;
 	if (word == 0)
-		ft_putstr_fd("МОСКВА ", 0);
+		ft_putstr_fd("МОСКВА❯	", 0);
 	else
-		ft_putstr_fd("САСАТЬ ", 0);
+		ft_putstr_fd("САСАТЬ❯	", 0);
 	ft_putstr_fd(RESET, 0);
 	word++;
 }

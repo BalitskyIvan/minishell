@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 18:22:11 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/08 18:24:20 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isprint(int ch)
+int		ft_isprint(int ch)
 {
-	if (ch >= 32 && ch <= 126)
-		return (1);
-	return (0);
+	return (ch > 31 && ch < 127) ? ch : 0;
 }

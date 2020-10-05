@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/05 22:50:06 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 18:28:01 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *source_1, const void *source_2, size_t count)
+void	*ft_memcpy(void *destination, const void *source, size_t n)
 {
-	unsigned char		*s1;
-	const unsigned char	*s2;
-	size_t				i;
+	unsigned char *str1;
+	unsigned char *str2;
 
-	s1 = (unsigned char*)source_1;
-	s2 = (unsigned char*)source_2;
-	i = 0;
-	if (!source_1 && !source_2)
-		return (source_1);
-	while (i < count)
-	{
-		s1[i] = s2[i];
-		i++;
-	}
-	return (source_1);
+	if (!n || destination == source)
+		return (destination);
+	str1 = (unsigned char *)destination;
+	str2 = (unsigned char *)source;
+	while (n--)
+		*(str1++) = *(str2++);
+	return (destination);
 }

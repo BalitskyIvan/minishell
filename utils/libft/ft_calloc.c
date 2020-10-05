@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 18:30:06 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/14 23:35:48 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	*ft_calloc(size_t num, size_t size)
 {
-	void *ret;
+	void	*result;
 
-	ret = malloc(size * num);
-	if (ret)
-		ft_memset(ret, 0, size * num);
-	return (ret);
+	result = malloc(num * size);
+	if (!result)
+		return (NULL);
+	ft_memset(result, 0, (num * size));
+	return (result);
 }

@@ -6,22 +6,31 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 20:43:59 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/05 23:00:24 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	white_string(void)
+void	parse_string(t_main *main, char *str)
+{
+	char	*patch;
+
+	main->com->args = ft_split(str, ' ');
+	patch = get_command_patch(main, main->com->args[0]);
+	main->com->command = patch;
+	execute_another_function(main);
+}
+
+void	wait_string(t_main *main)
 {
 	char	*line;
 
-	line = NULL;
 	while (get_next_line(0, &line) != 0)
 	{
-		ft_putstr_fd("ERROR: Command not found!\n", 0);
-		// printf("%s\n", line);
+		parse_string(main, line);
 		free(line);
+		line = NULL;
 		get_invitation();
 	}
 }

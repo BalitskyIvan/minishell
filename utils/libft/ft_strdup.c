@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 18:37:54 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/18 14:46:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_strdup(const char *source)
+char	*ft_strdup(const char *str)
 {
 	int		i;
-	char	*s;
+	int		len;
+	char	*result;
 
-	i = 0;
-	while (source[i] != '\0')
-		i++;
-	s = malloc(i + 1);
-	if (s)
-	{
-		i = 0;
-		while (source[i] != '\0')
-		{
-			s[i] = source[i];
-			i++;
-		}
-		s[i] = '\0';
-	}
-	return (s);
+	len = ft_strlen((char *)str);
+	result = (char *)malloc(len * sizeof(char) + 1);
+	if (!result)
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		result[i] = str[i];
+	result[i] = '\0';
+	return (result);
 }

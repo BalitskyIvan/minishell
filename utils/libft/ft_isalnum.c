@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 18:16:04 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/15 14:28:38 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int ch)
+int		ft_isalnum(int ch)
 {
-	if (ch >= '0' && ch <= '9')
-		return (1);
-	if (ch >= 'a' && ch <= 'z')
-		return (1);
-	if (ch >= 'A' && ch <= 'Z')
-		return (1);
-	return (0);
+	return ((ft_isalpha(ch) || ft_isdigit(ch)) ? ch : 0);
 }

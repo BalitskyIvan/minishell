@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/08 18:09:43 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/16 16:39:37 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isalpha(int ch)
+int		ft_isalpha(int ch)
 {
-	if (ch >= 'a' && ch <= 'z')
-		return (1);
-	if (ch >= 'A' && ch <= 'Z')
-		return (1);
-	return (0);
+	return (((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) ? ch : 0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/05 22:00:27 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/16 16:16:45 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*res;
+	char	*str;
+	int		i;
 
-	i = 0;
 	if (!s || !f)
 		return (NULL);
-	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+	str = (char *)malloc(ft_strlen((char *)s) * sizeof(char) + 1);
+	if (str == NULL)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		res[i] = (*f)(i, s[i]);
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
+	i = -1;
+	while (s[++i])
+		str[i] = f(i, s[i]);
+	str[i] = '\0';
+	return (str);
 }

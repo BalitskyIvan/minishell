@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/16 13:37:01 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/22 18:11:45 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newl;
-	t_list	*res;
+	t_list	*result;
+	t_list	*temp;
 
-	newl = ft_lstnew((*f)(lst->content));
-	res = newl;
-	if (newl == NULL)
+	if (!lst || !f || !del)
 		return (NULL);
+	if ((temp = ft_lstnew(f(lst->content))) == NULL)
+		return (NULL);
+	result = temp;
+	lst = lst->next;
 	while (lst)
 	{
-		if (lst->next)
+		temp = ft_lstnew(f(lst->content));
+		if ((temp = ft_lstnew(f(lst->content))) == NULL)
 		{
-			newl->next = ft_lstnew((*f)(lst->next->content));
-			if (newl->next == NULL)
-			{
-				ft_lstclear(&res, (*del));
-				return (0);
-			}
-			newl = newl->next;
+			ft_lstclear(&result, del);
+			break ;
 		}
 		lst = lst->next;
+		ft_lstadd_back(&result, temp);
 	}
-	newl->next = NULL;
-	return (res);
+	return (result);
 }

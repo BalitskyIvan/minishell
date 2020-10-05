@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/06 23:33:47 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 19:46:20 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 char	*ft_strrchr(const char *str, int ch)
 {
-	char	*res;
-	int		i;
+	int len;
 
-	i = 0;
-	res = (char *)str;
-	while (res[i] != '\0')
-		i++;
-	while (i > 0)
+	len = ft_strlen(str);
+	str += len - 1;
+	if ((char)ch == '\0')
+		return ((char *)str + 1);
+	while (len--)
 	{
-		if (res[i] == ch)
-			return (res + i);
-		i--;
+		if (*str == (char)ch)
+			return ((char *)str);
+		str--;
 	}
-	if (res[i] == ch)
-		return (res + i);
 	return (NULL);
 }

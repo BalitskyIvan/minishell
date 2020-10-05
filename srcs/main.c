@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/05 20:46:39 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/05 22:59:20 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int     main(int argc, char *argv[], char *env[])
 	
 	(void) argc;
 	main = global_init(argv, env);
-	white_string();
+	wait_string(&main);
     return (0);
 }

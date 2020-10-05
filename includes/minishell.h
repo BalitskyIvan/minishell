@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/05 20:47:12 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/05 22:54:58 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void				coma_add_front(t_coma *coma, t_main *main);
 void				coma_add_back(t_coma *coma, t_main *main);
 t_coma				*init_coma_basic(void);
 t_coma				*coma_create(char *command, char **args, int is_pipe);
-void				white_string();
+void				wait_string(t_main *main);
+int					execute_another_function(t_main *main);
+void				send_custom_error(char *str);
+char				*get_env_value(t_main *main, char *key);
+char				*get_command_patch(t_main *main, char *command);
 
 #endif

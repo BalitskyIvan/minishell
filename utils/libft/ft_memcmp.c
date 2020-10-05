@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/06 17:31:11 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/16 16:11:42 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *buf1, const void *buf2, size_t count)
+int		ft_memcmp(const void *arr1, const void *arr2, size_t n)
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
-	size_t			i;
+	int				i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	i = 0;
-	s1 = (unsigned char*)buf1;
-	s2 = (unsigned char*)buf2;
-	if (count == 0)
-		return (0);
-	while (s1[i] == s2[i] && i < count - 1)
-		i++;
-	return (s1[i] - s2[i]);
+	i = -1;
+	str1 = (unsigned char *)arr1;
+	str2 = (unsigned char *)arr2;
+	while ((size_t)++i < n)
+		if (str1[i] != str2[i])
+			return ((int)str1[i] - (int)str2[i]);
+	return (0);
 }

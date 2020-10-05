@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/05/06 17:14:38 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 18:50:05 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *buffer, int ch, size_t count)
+void	*ft_memchr(const void *arr, int c, size_t n)
 {
-	unsigned const char	*s1;
-	size_t				i;
+	int				i;
+	unsigned char	*str;
 
-	s1 = (unsigned char*)buffer;
 	i = 0;
-	while (i < count)
+	str = (unsigned char *)arr;
+	while (n--)
 	{
-		if (s1[i] == (unsigned char)ch)
-			return ((char *)s1 + i);
+		if (str[i] == (unsigned char)c)
+			return (str + i);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
