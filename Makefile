@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/05 18:56:15 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/05 20:46:10 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 C_FILES = $(SCR_DIR)/main.c\
-		$(GNL_DIR)/get_next_line.c
+		$(GNL_DIR)/get_next_line.c\
+		$(HELPERS_DIR)/coma_helper.c\
+		$(HELPERS_DIR)/coma_helper2.c\
+		$(MANAGERS_DIR)/error_manager.c\
+		$(MANAGERS_DIR)/init_manager.c\
+		$(MANAGERS_DIR)/invitation_manager.c\
+		$(MANAGERS_DIR)/parser/parse_string.c
 
 O_FILES = $(C_FILES:.c=.o)
 

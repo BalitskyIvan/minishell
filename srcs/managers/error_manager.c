@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/05 20:46:39 by mklotz           ###   ########.fr       */
+/*   Created: 2020/10/05 20:13:44 by mklotz            #+#    #+#             */
+/*   Updated: 2020/10/05 20:39:35 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	send_error(void)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	white_string();
-    return (0);
+	if (errno != 0)
+	{
+		perror(ERROR);
+		exit(errno);
+	}
+}
+
+void	send_custom_error(char *str)
+{
+	printf("%s %s\n", SYNTAX_ERROR, str);
 }
