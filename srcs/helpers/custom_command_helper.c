@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custon_command_helper.c                            :+:      :+:    :+:   */
+/*   custom_command_helper.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 23:12:59 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:47:09 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ char	*get_command_path(t_main *main, char *command)
 		if (access(result, 1) == 0)
 			break ;
 		else
-			free(result); 
+		{
+			free(result);
+			result = NULL;
+		}
 	}
 	return ((result == NULL) ? check_acting_patch(main, command) : result);
 }

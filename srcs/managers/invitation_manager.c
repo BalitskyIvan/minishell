@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 22:46:23 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:23:26 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	send_invitation(void)
 	ft_putstr_fd(BOLD, 0);
 	if (word == 2)
 		word = 0;
-	ft_putstr_fd("ШЕЛЛ_НАШ❯	", 0);
-	// if (word == 0)
-	// 	ft_putstr_fd("МОСКВА❯	", 0);
-	// else
-	// 	ft_putstr_fd("САСАТЬ❯	", 0);
+	// ft_putstr_fd("ШЕЛЛ_НАШ❯	", 0);
+	if (word == 0)
+		ft_putstr_fd("МОСКВА❯	", 0);
+	else
+		ft_putstr_fd("САСАТЬ❯	", 0);
 	ft_putstr_fd(RESET, 0);
 	word++;
 }

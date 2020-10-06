@@ -6,11 +6,11 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/06 00:06:45 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:22:06 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
+#include "../../../../includes/minishell.h"
 
 void	parse_string(t_main *main, char *str)
 {

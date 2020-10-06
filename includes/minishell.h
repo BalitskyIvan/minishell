@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 03:11:00 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:38:25 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct			s_command
 {
 	char				*command_str;
     char				**args;
-	int					is_pipe;
+	int					option;
 	struct s_command	*next;
 	struct s_command	*prev;
 }						t_command;

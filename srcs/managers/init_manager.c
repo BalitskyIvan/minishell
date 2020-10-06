@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:05:42 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 20:42:14 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:41:01 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_command	*init_command_basic(void)
 		send_error();
 	command->args = NULL;
 	command->command_str = NULL;
-	command->is_pipe = 0;
+	command->option = 0;
 	command->next = NULL;
 	command->prev = NULL;
 	return (command);

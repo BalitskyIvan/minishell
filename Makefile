@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/06 03:12:12 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/06 16:23:00 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(MANAGERS_DIR)/error_manager.c\
 		$(MANAGERS_DIR)/init_manager.c\
 		$(MANAGERS_DIR)/invitation_manager.c\
-		$(MANAGERS_DIR)/parser/parse_string.c\
+		$(MANAGERS_DIR)/command_manager/parser/parse_string.c\
 		$(MANAGERS_DIR)/execute_manager.c\
 		$(HELPERS_DIR)/env_helper.c\
 		$(HELPERS_DIR)/custom_command_helper.c\

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/06 03:42:32 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 16:52:26 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,19 @@ void	execute(t_main *main, char *cmd)
 {
 	char	*path;
 
-	main->command->args = ft_split(cmd, ' ');
-	path = get_command_path(main, main->command->args[0]);
-	if (hook_my_functions(main) == 0)
+	if (*cmd != '\0')
 	{
-		main->command->command_str = path;
-		execute_another_function(main);
+		main->command->args = ft_split(cmd, ' ');
+		path = get_command_path(main, main->command->args[0]);
+		if (hook_my_functions(main) == 0)
+		{
+			main->command->command_str = path;
+			if (path == NULL)
+				send_custom_error("Command not found!");
+			else
+				execute_another_function(main);
+		}
 	}
+	else
+		send_custom_error("Command not found!");
 }
