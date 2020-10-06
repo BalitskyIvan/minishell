@@ -48,7 +48,7 @@ int		execute_another_function(t_main *main)
 	return (0);
 }
 
-void	execute_managers(t_main *main, char *cmd)
+void	execute(t_main *main, char *cmd)
 {
 	char	*path;
 

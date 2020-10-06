@@ -35,10 +35,11 @@ void	send_invitation(void)
 	ft_putstr_fd(BOLD, 0);
 	if (word == 2)
 		word = 0;
-	if (word == 0)
-		ft_putstr_fd("МОСКВА❯	", 0);
-	else
-		ft_putstr_fd("САСАТЬ❯	", 0);
+	ft_putstr_fd("ШЕЛЛ_НАШ❯	", 0);
+	// if (word == 0)
+	// 	ft_putstr_fd("МОСКВА❯	", 0);
+	// else
+	// 	ft_putstr_fd("САСАТЬ❯	", 0);
 	ft_putstr_fd(RESET, 0);
 	word++;
 }

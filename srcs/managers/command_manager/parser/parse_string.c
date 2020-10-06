@@ -14,7 +14,7 @@
 
 void	parse_string(t_main *main, char *str)
 {
-	execute_managers(main, str);
+	execute(main, str);
 }
 
 void	wait_string(t_main *main)

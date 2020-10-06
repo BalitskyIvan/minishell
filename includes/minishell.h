@@ -59,7 +59,7 @@ int						execute_another_function(t_main *main);
 void					send_custom_error(char *str);
 char					*get_env_value(t_main *main, char *key);
 char					*get_command_path(t_main *main, char *command);
-void					execute_managers(t_main *main, char *cmd);
+void					execute(t_main *main, char *cmd);
 int						ft_cd(t_main *main);
 void					ft_exit(t_main *main);
 int						ft_env(t_main *main);
