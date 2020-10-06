@@ -26,6 +26,6 @@ void	wait_string(t_main *main)
 		parse_string(main, line);
 		free(line);
 		line = NULL;
-		get_invitation();
+		send_invitation();
 	}
 }

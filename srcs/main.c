@@ -12,12 +12,12 @@
 
 #include "../includes/minishell.h"
 
-int     main(int argc, char *argv[], char *env[])
+int	main(int argc, char *argv[], char *env[])
 {
 	t_main	main;
 	
 	(void) argc;
 	main = global_init(argv, env);
 	wait_string(&main);
-    return (0);
+	return (0);
 }

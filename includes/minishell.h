@@ -28,40 +28,40 @@
 # define ERROR "Error:\n"
 # define SYNTAX_ERROR "Syntax error: "
 
-typedef struct		s_coma
+typedef struct			s_command
 {
-	char			*command;
-    char			**args;
-	int				is_pipe;
-	struct s_coma	*next;
-	struct s_coma	*prev;
-}					t_coma;
+	char				*command_str;
+    char				**args;
+	int					is_pipe;
+	struct s_command	*next;
+	struct s_command	*prev;
+}						t_command;
 
-typedef struct		s_main
+typedef struct			s_main
 {
-	char			**argv;
-	char			**env;
-	t_coma			*com;
-}					t_main;
+	char				**argv;
+	char				**env;
+	t_command			*command;
+}						t_main;
 
-void				get_invitation(void);
-void				send_error(void);
-t_main				global_init(char *argv[], char *env[]);
-t_coma				*coma_get_first(t_coma *coma);
-t_coma				*coma_get_last(t_coma *coma);
-t_coma				*coma_get_element(t_main *main, int elem);
-void				coma_add_front(t_coma *coma, t_main *main);
-void				coma_add_back(t_coma *coma, t_main *main);
-t_coma				*init_coma_basic(void);
-t_coma				*coma_create(char *command, char **args, int is_pipe);
-void				wait_string(t_main *main);
-int					execute_another_function(t_main *main);
-void				send_custom_error(char *str);
-char				*get_env_value(t_main *main, char *key);
-char				*get_command_patch(t_main *main, char *command);
-void				execute_managers(t_main *main, char *cmd);
-int					ft_cd(t_main *main);
-void				ft_exit(t_main *main);
-int					ft_env(t_main *main);
+void					send_invitation(void);
+void					send_error(void);
+t_main					global_init(char *argv[], char *env[]);
+t_command				*get_first_command(t_command *command);
+t_command				*get_last_command(t_command *command);
+t_command				*get_command(t_main *main, int elem);
+void					command_add_front(t_command *command, t_main *main);
+void					command_add_back(t_command *command, t_main *main);
+t_command				*init_command_basic(void);
+t_command				*create_command(char *command, char **args, int is_pipe);
+void					wait_string(t_main *main);
+int						execute_another_function(t_main *main);
+void					send_custom_error(char *str);
+char					*get_env_value(t_main *main, char *key);
+char					*get_command_path(t_main *main, char *command);
+void					execute_managers(t_main *main, char *cmd);
+int						ft_cd(t_main *main);
+void					ft_exit(t_main *main);
+int						ft_env(t_main *main);
 
 #endif

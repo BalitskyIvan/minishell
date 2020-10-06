@@ -27,8 +27,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 C_FILES = $(SCR_DIR)/main.c\
 		$(GNL_DIR)/get_next_line.c\
-		$(HELPERS_DIR)/coma_helper.c\
-		$(HELPERS_DIR)/coma_helper2.c\
+		$(HELPERS_DIR)/command_helper.c\
+		$(HELPERS_DIR)/command_utils.c\
 		$(MANAGERS_DIR)/error_manager.c\
 		$(MANAGERS_DIR)/init_manager.c\
 		$(MANAGERS_DIR)/invitation_manager.c\
@@ -55,7 +55,7 @@ $(NAME): $(O_FILES)
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	@rm -f $(O_FILES)
+	rm -rf $(O_FILES)
 
 fclean:	clean
 	$(MAKE) -C $(LIBFT_DIR) fclean

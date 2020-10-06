@@ -17,17 +17,17 @@ int		ft_cd(t_main *main)
 	char	*patch;
 	char	new_patch[200];
 
-	if (main->com->args[1] != NULL)
-		patch = main->com->args[1];
+	if (main->command->args[1] != NULL)
+		patch = main->command->args[1];
 	else
 	{
-		send_custom_error("Not patch");
+		send_custom_error("Not path");
 		return (1);
 	}
 	if (patch[0] != '/')
 		patch = ft_strjoin(getcwd(new_patch, 200), patch);
 	if (chdir(patch) == -1)
-			send_custom_error("invalid patch");
+			send_custom_error("invalid path");
 	return (1);
 }
 
@@ -35,8 +35,8 @@ void	ft_exit(t_main *main)
 {
 	int		error;
 
-	if (main->com->args[1] != NULL)
-		error = ft_atoi(main->com->args[1]);
+	if (main->command->args[1] != NULL)
+		error = ft_atoi(main->command->args[1]);
 	else
 		error = 0;
 	printf("exit\n");

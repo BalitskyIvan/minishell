@@ -25,7 +25,7 @@ char	*random_color(void)
     return (colors[color]);
 }
 
-void	get_invitation(void)
+void	send_invitation(void)
 {
 	char	*color;
 	static int word = 0;

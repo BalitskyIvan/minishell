@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coma_helper2.c                                     :+:      :+:    :+:   */
+/*   command_helper2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-t_coma	*coma_create(char *command, char **args, int is_pipe)
+t_command	*_create(char *command_string, char **args, int is_pipe)
 {
-	t_coma	*coma;
+	t_command	*command;
 
-	coma = init_coma_basic();
-	coma->args = args;
-	coma->command = command;
-	coma->is_pipe = is_pipe;
-	return (coma);
+	command = init_command_basic();
+	command->args = args;
+	command->command_str = command_string;
+	command->is_pipe = is_pipe;
+	return (command);
 }

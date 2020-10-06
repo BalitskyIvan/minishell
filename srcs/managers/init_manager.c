@@ -12,27 +12,27 @@
 
 #include "../../includes/minishell.h"
 
-t_coma	*init_coma_basic(void)
+t_command	*init_command_basic(void)
 {
-	t_coma		*coma;
+	t_command	*command;
 
-	if ((coma = (t_coma *)malloc(sizeof(t_coma))) == NULL)
+	if ((command = (t_command *)malloc(sizeof(t_command))) == NULL)
 		send_error();
-	coma->args = NULL;
-	coma->command = NULL;
-	coma->is_pipe = 0;
-	coma->next = NULL;
-	coma->prev = NULL;
-	return (coma);
+	command->args = NULL;
+	command->command_str = NULL;
+	command->is_pipe = 0;
+	command->next = NULL;
+	command->prev = NULL;
+	return (command);
 }
 
 t_main	global_init(char *argv[], char *env[])
 {
-	t_main		main;
+	t_main	main;
 
 	main.argv = argv;
 	main.env = env;
-	main.com = init_coma_basic();
-	get_invitation();
+	main.command = init_command_basic();
+	send_invitation();
 	return (main);
 }
