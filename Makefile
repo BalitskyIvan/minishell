@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/06 02:20:49 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/06 03:12:12 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(MANAGERS_DIR)/parser/parse_string.c\
 		$(MANAGERS_DIR)/execute_manager.c\
 		$(HELPERS_DIR)/env_helper.c\
-		$(HELPERS_DIR)/custon_command_helper.c
+		$(HELPERS_DIR)/custon_command_helper.c\
+		$(MANAGERS_DIR)/custom_functions/my_custom_functions.c
 
 O_FILES = $(C_FILES:.c=.o)
 

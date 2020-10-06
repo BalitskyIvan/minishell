@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 00:35:48 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/06 03:11:00 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ void				send_custom_error(char *str);
 char				*get_env_value(t_main *main, char *key);
 char				*get_command_patch(t_main *main, char *command);
 void				execute_managers(t_main *main, char *cmd);
+int					ft_cd(t_main *main);
+void				ft_exit(t_main *main);
+int					ft_env(t_main *main);
 
 #endif
