@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/05 22:20:48 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/16 20:40:37 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		n *= -1;
+		ft_putchar_fd('-', fd);
+	}
+	if (n >= 10)
+		ft_putnbr_fd((n / 10), fd);
+	ft_putchar_fd((char)((n % 10) + '0'), fd);
 }

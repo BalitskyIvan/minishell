@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/06 16:55:48 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 18:50:39 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	*ft_memccpy(void *destination, const void *source, int c, size_t n)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				i;
+
+	i = -1;
+	str1 = (unsigned char *)destination;
+	str2 = (unsigned char *)source;
+	while ((size_t)++i < n)
+	{
+		str1[i] = str2[i];
+		if (str2[i] == (unsigned char)c)
+			return (str1 + i + 1);
+	}
+	return (NULL);
 }

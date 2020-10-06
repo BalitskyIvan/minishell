@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/08 18:16:04 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/15 14:28:38 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+int		ft_isalnum(int ch)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	return ((ft_isalpha(ch) || ft_isdigit(ch)) ? ch : 0);
 }

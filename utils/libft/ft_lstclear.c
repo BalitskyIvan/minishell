@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/16 13:22:04 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/22 18:11:34 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	t_list	*temp;
+
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		(*lst) = temp;
+	}
+	*lst = NULL;
 }

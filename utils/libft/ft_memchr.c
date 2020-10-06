@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/06 17:14:38 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/11 18:50:05 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	*ft_memchr(const void *arr, int c, size_t n)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	int				i;
+	unsigned char	*str;
+
+	i = 0;
+	str = (unsigned char *)arr;
+	while (n--)
+	{
+		if (str[i] == (unsigned char)c)
+			return (str + i);
+		i++;
+	}
+	return (NULL);
 }
