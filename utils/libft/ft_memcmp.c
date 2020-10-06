@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/06 17:31:11 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/16 16:11:42 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+int		ft_memcmp(const void *arr1, const void *arr2, size_t n)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	int				i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	i = -1;
+	str1 = (unsigned char *)arr1;
+	str2 = (unsigned char *)arr2;
+	while ((size_t)++i < n)
+		if (str1[i] != str2[i])
+			return ((int)str1[i] - (int)str2[i]);
+	return (0);
 }

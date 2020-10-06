@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/05/08 18:37:54 by mklotz            #+#    #+#             */
+/*   Updated: 2020/05/18 14:46:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int     main(int argc, char *argv[], char *env[])
+char	*ft_strdup(const char *str)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	int		i;
+	int		len;
+	char	*result;
+
+	len = ft_strlen((char *)str);
+	result = (char *)malloc(len * sizeof(char) + 1);
+	if (!result)
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		result[i] = str[i];
+	result[i] = '\0';
+	return (result);
 }

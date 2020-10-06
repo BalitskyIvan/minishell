@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 02:20:59 by mklotz           ###   ########.fr       */
+/*   Created: 2020/10/05 20:42:34 by mklotz            #+#    #+#             */
+/*   Updated: 2020/10/06 00:06:45 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int     main(int argc, char *argv[], char *env[])
+void	parse_string(t_main *main, char *str)
 {
-	t_main	main;
-	
-	(void) argc;
-	main = global_init(argv, env);
-	wait_string(&main);
-    return (0);
+	execute_managers(main, str);
+}
+
+void	wait_string(t_main *main)
+{
+	char	*line;
+
+	while (get_next_line(0, &line) != 0)
+	{
+		parse_string(main, line);
+		free(line);
+		line = NULL;
+		get_invitation();
+	}
 }
