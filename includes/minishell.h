@@ -31,8 +31,11 @@
 typedef struct			s_command
 {
 	char				*command_str;
-    char				**args;
-	int					option;
+	char				**args;
+	struct				*pipe;
+	struct				*redirect;
+	struct				*back_redirect;
+	struct				*double_redirect;
 	struct s_command	*next;
 	struct s_command	*prev;
 }						t_command;
