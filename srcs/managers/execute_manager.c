@@ -50,21 +50,5 @@ int		execute_another_function(t_main *main)
 
 void	execute(t_main *main, char *cmd)
 {
-	char	*path;
 
-	if (*cmd != '\0')
-	{
-		main->command->args = ft_split(cmd, ' ');
-		path = get_command_path(main, main->command->args[0]);
-		if (hook_my_functions(main) == 0)
-		{
-			main->command->command_str = path;
-			if (path == NULL)
-				send_custom_error("Command not found!");
-			else
-				execute_another_function(main);
-		}
-	}
-	else
-		send_custom_error("Command not found!");
 }
