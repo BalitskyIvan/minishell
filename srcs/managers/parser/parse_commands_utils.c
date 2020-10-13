@@ -68,6 +68,7 @@ t_command	*catch_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator++;
 	*start = iterator;
+	new->redirect_type = 1;
 	new->redirect = catch_command(new, str, start, main);
 	return (new);
 }
@@ -87,7 +88,8 @@ t_command	*catch_back_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator++;
 	*start = iterator;
-	new->back_redirect = catch_command(new, str, start, main);
+	new->redirect_type = 3;
+	new->redirect = catch_command(new, str, start, main);
 	return (new);
 }
 
@@ -106,6 +108,7 @@ t_command	*catch_double_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator += 2;
 	*start = iterator;
-	new->double_redirect = catch_command(new, str, start, main);
+	new->redirect_type = 2;
+	new->redirect = catch_command(new, str, start, main);
 	return (new);
 }

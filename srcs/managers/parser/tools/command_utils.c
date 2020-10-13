@@ -22,9 +22,8 @@ t_command	*init_command_basic(void)
 	command->command_str = NULL;
 	command->pipe = NULL;
 	command->undefined_arg = 0;
+	command->redirect_type = -1;
 	command->redirect = NULL;
-	command->back_redirect = NULL;
-	command->double_redirect = NULL;
 	command->next = NULL;
 	command->prev = NULL;
 	return (command);
