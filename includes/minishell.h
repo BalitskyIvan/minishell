@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 16:38:25 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/13 12:39:01 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ t_command				*init_command_basic(void);
 t_command				*create_command(char *command,
 char **args, int is_pipe);
 void					wait_string(t_main *main);
-int						execute_another_function(t_main *main);
+int						execute_another_function(t_main *main, t_command *command);
 void					send_custom_error(char *str);
 char					*get_env_value(t_main *main, char *key);
 char					*get_command_path(t_main *main, char *command);
-void					execute(t_main *main, char *cmd);
-int						ft_cd(t_main *main);
-void					ft_exit(t_main *main);
+void					execute(t_main *main);
+int						ft_cd(t_command *command);
+void					ft_exit(t_command *command);
 int						ft_env(t_main *main);
 char					*get_command_str(char *str, int start, t_main *main);
 char					**get_args_str(char *str, int start, t_main *main);
@@ -91,5 +91,10 @@ void					get_environment_variable(char **dst, char *str,
 int *start, t_main *main);
 int						skip_brackets(char **dst, char *str,
 int *start, t_main *main);
+int						copy_env(char *env[], t_main *main);
+int						unset_env(t_main *main);
+int						export_env(t_main *main);
+int						get_file(char *file, char type);
+int						check_redirect(t_command *command);
 
 #endif

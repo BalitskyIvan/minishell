@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   files_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <lmallado@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/23 00:13:51 by lmallado          #+#    #+#             */
-/*   Updated: 2020/05/23 01:04:23 by lmallado         ###   ########.fr       */
+/*   Created: 2020/10/13 10:59:22 by mklotz            #+#    #+#             */
+/*   Updated: 2020/10/13 12:43:39 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-void	ft_bzero(void *s, size_t n)
+int		get_file(char *file, char type)
 {
-	ft_memset(s, 0, n);
+	int		fd;
+
+	if (type == '0')
+		fd = open(file, O_RDWR | O_CREAT);
+	else
+		fd = open(file, O_RDWR | O_CREAT, O_APPEND);
+	// send_error();
+	return (fd);
 }

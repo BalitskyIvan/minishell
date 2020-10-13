@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:04:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 16:04:54 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/12 20:26:38 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void				parse_commands(t_main *main, char *str)
 		current->next = catch_command(current, str, &start, main);
 		current = current->next;
 	}
-	print_commands(first, "EP");
+	main->command = first;
+	// print_commands(first, "EP");
 }
 
 void				wait_string(t_main *main)
@@ -70,6 +71,7 @@ void				wait_string(t_main *main)
 	while (get_next_line(0, &line) != 0)
 	{
 		parse_commands(main, line);
+		execute(main);
 		free(line);
 		line = NULL;
 		send_invitation();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   brackets_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:21:52 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/09 15:21:56 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/13 10:57:50 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_main *main)
 	str[end] != '\\' && !is_valid_point_catched(str[end]) && str[end])
 		end++;
 	key = ft_substr(str, begin, end - begin);
-	printf("Key: %s\n", key);
 	res = get_env_value(main, key);
 	if (res != NULL)
 	{

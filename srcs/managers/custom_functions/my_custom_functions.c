@@ -6,19 +6,19 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/06 03:12:27 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/12 20:38:03 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int		ft_cd(t_main *main)
+int		ft_cd(t_command *command)
 {
 	char	*patch;
 	char	new_patch[200];
 
-	if (main->command->args[1] != NULL)
-		patch = main->command->args[1];
+	if (command->args[1] != NULL)
+		patch = command->args[1];
 	else
 	{
 		send_custom_error("Not path");
@@ -31,12 +31,12 @@ int		ft_cd(t_main *main)
 	return (1);
 }
 
-void	ft_exit(t_main *main)
+void	ft_exit(t_command *command)
 {
 	int		error;
 
-	if (main->command->args[1] != NULL)
-		error = ft_atoi(main->command->args[1]);
+	if (command->args[1] != NULL)
+		error = ft_atoi(command->args[1]);
 	else
 		error = 0;
 	printf("exit\n");
