@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/13 12:40:42 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:04:39 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		execute_another_function(t_main *main, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
-		fd = check_redirect(command);
-		dup2(fd, 0);
+		fd = dup2(check_redirect(command), 1);
 		status = execve(command->command_str,
 		command->args, main->env);
+		close(fd);
 		if (status == -1)
 			send_custom_error("Command not found!");
 	}
@@ -53,6 +53,7 @@ int		execute_another_function(t_main *main, t_command *command)
 
 void	execute(t_main *main)
 {
+	errno = 0;
 	if (main->command == NULL)
 		send_custom_error("Command not found!");
 	while (main->command != NULL)

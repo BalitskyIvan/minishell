@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/13 12:42:53 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/13 13:41:18 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(HELPERS_DIR)/custom_command_helper.c\
 		$(MANAGERS_DIR)/custom_functions/my_custom_functions.c\
 		$(MANAGERS_DIR)/redirect_manager.c\
-		$(HELPERS_DIR)/files_helper.c\
-		tester/print_commands.c
+		$(HELPERS_DIR)/files_helper.c
 
 O_FILES = $(C_FILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 12:39:01 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:07:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BOLD "\033[1m"
 # define RESET "\033[0m"
 
-# define ERROR "Error:\n"
+# define ERROR "Error"
 # define SYNTAX_ERROR "Syntax error: "
 
 typedef struct			s_command
@@ -93,7 +93,7 @@ int *start, t_main *main);
 int						copy_env(char *env[], t_main *main);
 int						unset_env(t_main *main);
 int						export_env(t_main *main);
-int						get_file(char *file, char type);
+int						get_file(char *file, int type);
 int						check_redirect(t_command *command);
 
 #endif

@@ -1,0 +1,12 @@
+total 80
+drwxr-xr-x  11 mklotz  student    374 Oct 13 13:57 .
+drwxr-xr-x  14 mklotz  student    476 Oct 13 13:37 ..
+-rw-r--r--   1 mklotz  student   6148 Oct 13 13:55 .DS_Store
+drwxr-xr-x  12 mklotz  student    408 Oct 13 13:37 .git
+-r--------   1 mklotz  student      0 Oct 13 13:57 12345
+-r--------   1 mklotz  student      0 Oct 13 13:57 124
+-rw-r--r--   1 mklotz  student   2307 Oct 13 13:41 Makefile
+drwxr-xr-x   3 mklotz  student    102 Oct 13 13:37 includes
+-rwxr-xr-x   1 mklotz  student  25004 Oct 13 13:55 minishell
+drwxr-xr-x   6 mklotz  student    204 Oct 13 13:41 srcs
+drwxr-xr-x   5 mklotz  student    170 Oct 13 13:37 utils

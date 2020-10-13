@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:05:20 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/06 16:05:25 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/13 13:49:48 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_command	*catch_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator++;
 	*start = iterator;
-	new->redirect_type = 1;
 	new->redirect = catch_command(new, str, start, main);
+	new->redirect->redirect_type = 1;
 	return (new);
 }
 
@@ -88,8 +88,8 @@ t_command	*catch_back_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator++;
 	*start = iterator;
-	new->redirect_type = 3;
 	new->redirect = catch_command(new, str, start, main);
+	new->redirect->redirect_type = 3;
 	return (new);
 }
 
@@ -108,7 +108,7 @@ t_command	*catch_double_redirect(char *str, int *start, t_main *main)
 	get_args_str(str, *start, main));
 	iterator += 2;
 	*start = iterator;
-	new->redirect_type = 2;
 	new->redirect = catch_command(new, str, start, main);
+	new->redirect->redirect_type = 2;
 	return (new);
 }
