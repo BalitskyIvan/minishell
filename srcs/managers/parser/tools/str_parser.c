@@ -14,7 +14,7 @@
 
 static int	get_args_size(char *str, int start)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	while (!is_valid_point_catched(str[start]) && str[start])
@@ -34,7 +34,7 @@ static int	get_args_size(char *str, int start)
 
 static int	skip_to_args(char *str, int start)
 {
-	int end;
+	int	end;
 
 	end = start;
 	while (str[end] != ' ' && str[end])
@@ -45,11 +45,11 @@ static int	skip_to_args(char *str, int start)
 	return (start);
 }
 
-char	*get_command_str(char *str, int start, t_main *main)
+char		*get_command_str(char *str, int start, t_main *main)
 {
-	int	end;
-	char *res;
-	int s;
+	int		end;
+	char	*res;
+	int		s;
 
 	end = start;
 	while (str[end] != ' ' && str[end] && !is_valid_point_catched(str[end]))
@@ -59,7 +59,7 @@ char	*get_command_str(char *str, int start, t_main *main)
 	return (res);
 }
 
-char	**get_args_str(char *str, int start, t_main *main)
+char		**get_args_str(char *str, int start, t_main *main)
 {
 	int		end;
 	char	**args;

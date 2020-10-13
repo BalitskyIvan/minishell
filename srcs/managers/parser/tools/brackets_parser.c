@@ -12,13 +12,13 @@
 
 #include "../../../../includes/minishell.h"
 
-void	get_environment_variable(char **dst, char *str, int *start,
+void		get_environment_variable(char **dst, char *str, int *start,
 t_main *main)
 {
-	int begin;
-	int end;
-	char *key;
-	char *res;
+	int		begin;
+	int		end;
+	char	*key;
+	char	*res;
 
 	begin = *start;
 	if (str[*start] == '$')
@@ -38,9 +38,9 @@ t_main *main)
 	free(key);
 }
 
-int	skip_single_brackets(char **dst, char *str, int start)
+int			skip_single_brackets(char **dst, char *str, int start)
 {
-	char *c;
+	char	*c;
 
 	if (str[start] == '\'')
 		start++;
@@ -58,38 +58,45 @@ int	skip_single_brackets(char **dst, char *str, int start)
 	return (0);
 }
 
-int	skip_double_brackets(char **dst, char *str, int start, t_main *main)
+static int	skip_shield(char **c, char **dst, char *str, int *start)
 {
-	char *c;
+	(*c)[0] = str[*start];
+	if (str[*start] == '\\')
+	{
+		if (str[*start + 1] == '"')
+		{
+			free(*c);
+			return (0);
+		}
+		if (str[*start + 1] == '\\')
+			*start = *start + 1;
+		else
+		{
+			if (str[*start + 1] != '$')
+				*dst = ft_strjoin(*dst, *c);
+			*start = *start + 1;
+			(*c)[0] = str[*start];
+		}
+	}
+	return (1);
+}
 
-	if (str[start] == '"')
-		start++;
+int			skip_double_brackets(char **dst, char *str, int start, t_main *main)
+{
+	char	*c;
+
 	c = (char*)malloc(2 * sizeof(char));
 	c[1] = '\0';
+	if (str[start] == '"')
+		start++;
 	while (str[start] != '"' && str[start])
 	{
 		if (str[start] == '$')
 			get_environment_variable(dst, str, &start, main);
 		else
 		{
-			c[0] = str[start];
-			if (str[start] == '\\')
-			{
-				if (str[start + 1] == '"')
-				{
-					free(c);
-					return(0);
-				}
-				if (str[start + 1] == '\\')
-					start++;
-				else
-				{
-					if (str[start + 1] != '$')
-						*dst = ft_strjoin(*dst, c);
-					start++;
-					c[0] = str[start];
-				}
-			}
+			if (!skip_shield(&c, dst, str, &start))
+				return (0);
 			*dst = ft_strjoin(*dst, c);
 			start++;
 		}

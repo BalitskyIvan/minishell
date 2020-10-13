@@ -29,7 +29,7 @@ t_command	*init_command_basic(void)
 	return (command);
 }
 
-t_command	*_create(char *command_string, char **args)
+t_command	*create_obj(char *command_string, char **args)
 {
 	t_command	*command;
 

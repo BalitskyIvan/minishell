@@ -61,7 +61,6 @@ void				parse_commands(t_main *main, char *str)
 		current = current->next;
 	}
 	main->command = first;
-	// print_commands(first, "EP");
 }
 
 void				wait_string(t_main *main)
@@ -77,4 +76,3 @@ void				wait_string(t_main *main)
 		send_invitation();
 	}
 }
-

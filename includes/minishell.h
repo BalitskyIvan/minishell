@@ -70,7 +70,7 @@ void					ft_exit(t_command *command);
 int						ft_env(t_main *main);
 char					*get_command_str(char *str, int start, t_main *main);
 char					**get_args_str(char *str, int start, t_main *main);
-t_command				*_create(char *command_string, char **args);
+t_command				*create_obj(char *command_string, char **args);
 t_command				*catch_endpoint(char *str, int *start, t_main *main);
 void					print_commands(t_command *command, char *dsc);
 t_command				*catch_command(t_command *current, char *str,

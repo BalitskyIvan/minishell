@@ -12,7 +12,7 @@
 
 #include "../../../../includes/minishell.h"
 
-int	skip_shielding(char **dst, char *str, int start)
+int			skip_shielding(char **dst, char *str, int start)
 {
 	char *c;
 
@@ -47,8 +47,8 @@ static int	skip_options(char **dst, char *str, int *start, t_main *main)
 
 int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 {
-	int str_start;
-	char *c;
+	int		str_start;
+	char	*c;
 
 	*dst = NULL;
 	while (str[*start] == ' ')
@@ -71,10 +71,10 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 	return (1);
 }
 
-static void free_args(char **args)
+static void	free_args(char **args)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (args[i])
 	{
@@ -93,7 +93,8 @@ char		**parse_args(int args_size, char *str, int start, t_main *main)
 	i = 0;
 	args = (char**)malloc((args_size + 1) * sizeof(char*));
 	args[i] = get_command_str(str, start, main);
-	while (str[start] != ' ' && str[start] && !is_valid_point_catched(str[start]))
+	while (str[start] != ' ' && str[start] &&
+	!is_valid_point_catched(str[start]))
 		start++;
 	while (!is_valid_point_catched(str[start]) && str[start])
 	{
