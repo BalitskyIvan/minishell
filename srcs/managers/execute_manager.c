@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/13 14:04:39 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:42:13 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		execute_another_function(t_main *main, t_command *command)
 	pid = fork();
 	if (pid == 0)
 	{
-		fd = dup2(check_redirect(command), 1);
+		status = check_redirect(command, &fd);
+		dup2(fd, (status == 3) ? 0 : 1);
 		status = execve(command->command_str,
 		command->args, main->env);
 		close(fd);

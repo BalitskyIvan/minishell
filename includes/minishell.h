@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 14:07:19 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:34:32 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int						copy_env(char *env[], t_main *main);
 int						unset_env(t_main *main);
 int						export_env(t_main *main);
 int						get_file(char *file, int type);
-int						check_redirect(t_command *command);
+int						check_redirect(t_command *command, int *fd);
 
 #endif
