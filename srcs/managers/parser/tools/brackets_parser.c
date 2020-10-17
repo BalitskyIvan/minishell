@@ -6,13 +6,11 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:21:52 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 10:57:50 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 14:15:39 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../includes/minishell.h"
-
-
 
 void		get_environment_variable(char **dst, char *str, int *start,
 t_main *main)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 18:44:21 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 18:44:34 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:04:14 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	get_sizeof_args(char **args)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (args[i])
@@ -22,7 +22,7 @@ static int	get_sizeof_args(char **args)
 	return (i);
 }
 
-int	change_directory(t_command *command, t_main *main)
+int			change_directory(t_command *command, t_main *main)
 {
 	char	*path;
 	char	*new_path;

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:05:20 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 13:49:48 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 15:36:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ t_command	*catch_double_redirect(char *str, int *start, t_main *main)
 
 	iterator = *start;
 	if (str[iterator] == '>' && str[iterator + 1] == '>')
-		iterator+=2;
+		iterator += 2;
 	else
 		return (NULL);
 	while (str[iterator] == ' ')

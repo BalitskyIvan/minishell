@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:33:04 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/12 20:23:06 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 14:03:25 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		export_env(t_main *main, char *arg)
 {
 	char	**env;
 	int		i;
-	
+
 	i = 0;
 	env = main->env;
 	while (env[i])
@@ -69,7 +69,7 @@ int		unset_env(t_main *main, char *arg)
 	char	**temp;
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	env = main->env;
 	while (env[i])
@@ -94,7 +94,7 @@ int		unset_env(t_main *main, char *arg)
 int		copy_env(char *env[], t_main *main)
 {
 	int		i;
-	
+
 	i = 0;
 	while (env[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:04:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/12 20:26:38 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 14:22:46 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_command	*catch_tree_commands(char *str, int *start, t_main *main)
 {
-	t_command	*new;
+	t_command		*new;
 
 	new = NULL;
 	new = catch_pipe(str, start, main);
@@ -27,9 +27,9 @@ static t_command	*catch_tree_commands(char *str, int *start, t_main *main)
 	return (new);
 }
 
-static t_command		*catch_command(char *str, int *start, t_main *main)
+static t_command	*catch_command(char *str, int *start, t_main *main)
 {
-	t_command	*new;
+	t_command		*new;
 
 	while (str[*start] == ' ')
 		*start = *start + 1;
@@ -39,12 +39,12 @@ static t_command		*catch_command(char *str, int *start, t_main *main)
 	return (new);
 }
 
-static int				parse_commands(t_main *main, char *str, int start)
+static int			parse_commands(t_main *main, char *str, int start)
 {
-	t_command	*current;
-	t_command	*last_pipe;
-	t_command	*last_redirect;
-	t_command	*copy;
+	t_command		*current;
+	t_command		*last_pipe;
+	t_command		*last_redirect;
+	t_command		*copy;
 
 	if (*str == '\0')
 		return (0);
@@ -111,7 +111,8 @@ static int				parse_commands(t_main *main, char *str, int start)
 
 void				wait_string(t_main *main)
 {
-	char	*line;
+	char			*line;
+
 	main->main_0 = dup(0);
 	main->main_1 = dup(1);
 	main->status = 0;

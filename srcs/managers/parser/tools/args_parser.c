@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 13:10:36 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/09 13:10:40 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:13:28 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 	}
 	return (1);
 }
-
 
 char		**parse_args(int args_size, char *str, int start, t_main *main)
 {

@@ -6,22 +6,48 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 13:35:39 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 15:35:31 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_exit(t_command *command, t_main *main)
+void	ft_exit_support(t_main *main, char *arg)
+{
+	int		i;
+
+	i = -1;
+	while (arg[++i])
+	{
+		if (ft_isalpha(arg[i]) > 0)
+		{
+			printf("exit\n");
+			send_custom_error("numeric argument required!");
+			exit(255);
+		}
+	}
+}
+
+int		ft_exit(t_command *command, t_main *main)
 {
 	int		error;
 
 	if (command->args[1] != NULL)
+	{
+		ft_exit_support(main, command->args[1]);
 		error = ft_atoi(command->args[1]);
+	}
 	else
 		error = main->status;
 	printf("exit\n");
-	exit(error);
+	if (command->args[2] != NULL)
+	{
+		send_custom_error("Too many arguments");
+		main->status = 1;
+	}
+	else
+		exit(error);
+	return (1);
 }
 
 int		ft_env(t_main *main)

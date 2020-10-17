@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 13:55:41 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 14:37:02 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int		hook_my_functions(t_main *main, t_command *command)
 	{
 		printf("%s\n", get_env_value(main, "PWD"));
 		return (1);
-	} 
+	}
 	else if (ft_strncmp(command->args[0], "env", -1) == 0)
-		return(ft_env(main));
+		return (ft_env(main));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
-		return(change_directory(command, main));
+		return (change_directory(command, main));
 	else if (ft_strncmp(command->args[0], "echo", -1) == 0)
-		return(ft_echo(command, main));
+		return (ft_echo(command, main));
 	else if (ft_strncmp(command->args[0], "exit", -1) == 0)
-		ft_exit(command, main);
+		return (ft_exit(command, main));
 	return (0);
 }
 
@@ -39,7 +39,6 @@ int		execute_another_function(t_main *main, t_command *command)
 	int		pfd[2];
 
 	get_pipe_main(main, command, pfd);
-	errno = 0;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -73,7 +72,8 @@ void	execute(t_main *main)
 		{
 			if (hook_my_functions(main, main->command) == 0)
 			{
-				main->command->command_str = get_command_path(main, main->command->command_str);
+				main->command->command_str = get_command_path(main,
+				main->command->command_str);
 				if (main->command->command_str == NULL)
 				{
 					main->status = 127;
