@@ -34,6 +34,7 @@ typedef struct			s_command
 	char				**args;
 	int					redirect_type;
 	int					undefined_arg;
+	int					endpoint_type;
 	struct s_command	*pipe;
 	struct s_command	*redirect;
 	struct s_command	*next;
@@ -45,6 +46,9 @@ typedef struct			s_main
 	char				**argv;
 	char				**env;
 	t_command			*command;
+	int					main_0;
+	int					main_1;
+	int					status;
 }						t_main;
 
 void					send_invitation(void);
@@ -60,12 +64,13 @@ t_command				*init_command_basic(void);
 t_command				*create_command(char *command,
 char **args, int is_pipe);
 void					wait_string(t_main *main);
-int						execute_another_function(t_main *main, t_command *command);
+int						execute_another_function(t_main *main,
+t_command *command);
 void					send_custom_error(char *str);
 char					*get_env_value(t_main *main, char *key);
 char					*get_command_path(t_main *main, char *command);
 void					execute(t_main *main);
-int						ft_cd(t_command *command);
+int						change_directory(t_command *command, t_main *main);
 void					ft_exit(t_command *command);
 int						ft_env(t_main *main);
 char					*get_command_str(char *str, int start, t_main *main);
@@ -73,8 +78,6 @@ char					**get_args_str(char *str, int start, t_main *main);
 t_command				*create_obj(char *command_string, char **args);
 t_command				*catch_endpoint(char *str, int *start, t_main *main);
 void					print_commands(t_command *command, char *dsc);
-t_command				*catch_command(t_command *current, char *str,
-						int *start, t_main *main);
 t_command				*catch_pipe(char *str, int *start, t_main *main);
 t_command				*catch_redirect(char *str, int *start, t_main *main);
 t_command				*catch_back_redirect(char *str, int *start,
@@ -91,9 +94,14 @@ int *start, t_main *main);
 int						skip_brackets(char **dst, char *str,
 int *start, t_main *main);
 int						copy_env(char *env[], t_main *main);
-int						unset_env(t_main *main);
-int						export_env(t_main *main);
+int						unset_env(t_main *main, char *arg);
+int						export_env(t_main *main, char *arg);
 int						get_file(char *file, int type);
-int						check_redirect(t_command *command, int *fd);
+int						check_redirect(t_command *command);
+int						get_pipe_main(t_main *main, t_command *command, int pfd[2]);
+int						get_pipe_support(t_main *main, t_command *command, int pfd[2]);
+int						check_pipe(t_main *main, t_command *command, int pfd[2]);
+void					free_command_list(t_command *command);
+void					free_args(char **args);
 
 #endif

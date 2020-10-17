@@ -12,6 +12,8 @@
 
 #include "../../../../includes/minishell.h"
 
+
+
 void		get_environment_variable(char **dst, char *str, int *start,
 t_main *main)
 {
@@ -27,6 +29,12 @@ t_main *main)
 	while (str[end] != ' ' && str[end] != '"' && str[end] != '\'' &&
 	str[end] != '\\' && !is_valid_point_catched(str[end]) && str[end])
 		end++;
+	if (str[begin] == '?')
+	{
+		*dst = ft_strjoin(*dst, ft_itoa(main->status));
+		*start = begin + 1;
+		return ;
+	}
 	key = ft_substr(str, begin, end - begin);
 	res = get_env_value(main, key);
 	if (res != NULL)

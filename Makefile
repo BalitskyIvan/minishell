@@ -43,6 +43,7 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(HELPERS_DIR)/env_helper.c\
 		$(HELPERS_DIR)/custom_command_helper.c\
 		$(MANAGERS_DIR)/custom_functions/my_custom_functions.c\
+		$(MANAGERS_DIR)/custom_functions/change_directory.c\
 		$(MANAGERS_DIR)/redirect_manager.c\
 		$(HELPERS_DIR)/files_helper.c
 

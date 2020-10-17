@@ -12,10 +12,42 @@
 
 #include "../../../../includes/minishell.h"
 
-int	is_valid_point_catched(char c)
+int		is_valid_point_catched(char c)
 {
 	if (c == ';' || c == '|' || c == '<' || c == '>')
 		return (1);
 	else
 		return (0);
+}
+
+
+void	free_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	// while (args[i])
+	// {
+	// 	free(args[i]);
+	// 	i++;
+	// }
+	// free(args);
+}
+
+void	free_command_list(t_command *command)
+{
+	t_command *copy;
+
+	// while (command)
+	// {
+	// 	free(command->command_str);
+	// 	free_args(command->args);
+	// 	if (command->pipe)
+	// 		free_command_list(command->pipe);
+	// 	if (command->redirect)
+	// 		free_command_list(command->redirect);
+	// 	copy = command;
+	// 	command = command->next;
+	// 	free(copy);
+	// }
 }

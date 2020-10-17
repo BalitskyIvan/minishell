@@ -71,18 +71,6 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 	return (1);
 }
 
-static void	free_args(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-}
 
 char		**parse_args(int args_size, char *str, int start, t_main *main)
 {

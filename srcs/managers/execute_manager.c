@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/13 14:42:13 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/16 13:18:40 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		hook_my_functions(t_main *main, t_command *command)
 	else if (ft_strncmp(command->args[0], "env", -1) == 0)
 		return(ft_env(main));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
-		return(ft_cd(command));
+		return(change_directory(command, main));
 	else if (ft_strncmp(command->args[0], "exit", -1) == 0)
 		ft_exit(command);
 	return (0);
@@ -32,23 +32,27 @@ int		execute_another_function(t_main *main, t_command *command)
 {
 	pid_t	pid;
 	int		status;
-	int		fd;
+	int		pfd[2];
 
+	get_pipe_main(main, command, pfd);
 	pid = fork();
 	if (pid == 0)
 	{
-		status = check_redirect(command, &fd);
-		dup2(fd, (status == 3) ? 0 : 1);
+		get_pipe_support(main, command, pfd);
+		check_redirect(command->redirect);
 		status = execve(command->command_str,
 		command->args, main->env);
-		close(fd);
 		if (status == -1)
 			send_custom_error("Command not found!");
+		exit(0);
 	}
 	else if (pid < 0)
 		send_error();
 	else
+	{
 		wait(&pid);
+		check_pipe(main, command, pfd);
+	}
 	return (0);
 }
 

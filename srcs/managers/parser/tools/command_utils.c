@@ -23,6 +23,7 @@ t_command	*init_command_basic(void)
 	command->pipe = NULL;
 	command->undefined_arg = 0;
 	command->redirect_type = -1;
+	command->endpoint_type = -1;
 	command->redirect = NULL;
 	command->next = NULL;
 	command->prev = NULL;

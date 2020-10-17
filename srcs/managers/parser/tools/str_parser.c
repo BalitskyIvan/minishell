@@ -47,13 +47,9 @@ static int	skip_to_args(char *str, int start)
 
 char		*get_command_str(char *str, int start, t_main *main)
 {
-	int		end;
 	char	*res;
 	int		s;
 
-	end = start;
-	while (str[end] != ' ' && str[end] && !is_valid_point_catched(str[end]))
-		end++;
 	s = start;
 	skip_brackets(&res, str, &s, main);
 	return (res);

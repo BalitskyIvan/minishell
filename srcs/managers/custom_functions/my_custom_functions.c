@@ -12,25 +12,6 @@
 
 #include "../../../includes/minishell.h"
 
-int		ft_cd(t_command *command)
-{
-	char	*patch;
-	char	new_patch[200];
-
-	if (command->args[1] != NULL)
-		patch = command->args[1];
-	else
-	{
-		send_custom_error("Not path");
-		return (1);
-	}
-	if (patch[0] != '/')
-		patch = ft_strjoin(getcwd(new_patch, 200), patch);
-	if (chdir(patch) == -1)
-			send_custom_error("invalid path");
-	return (1);
-}
-
 void	ft_exit(t_command *command)
 {
 	int		error;
@@ -49,6 +30,9 @@ int		ft_env(t_main *main)
 
 	i = -1;
 	while (main->env[++i])
-			printf("%s\n", main->env[++i]);
+	{
+		ft_putstr_fd(main->env[i], 1);
+		ft_putstr_fd("\n", 1);
+	}
 	return (1);
 }

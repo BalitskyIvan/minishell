@@ -45,7 +45,7 @@ void	free_env(t_main *main)
 	main->env = NULL;
 }
 
-int		export_env(t_main *main)
+int		export_env(t_main *main, char *arg)
 {
 	char	**env;
 	int		i;
@@ -58,12 +58,12 @@ int		export_env(t_main *main)
 	i = -1;
 	while (env[++i])
 		main->env[i] = ft_strdup(env[i]);
-	main->env[i] = ft_strdup(main->command->args[1]);
+	main->env[i] = ft_strdup(arg);
 	main->env[i + 1] = NULL;
 	return (1);
 }
 
-int		unset_env(t_main *main)
+int		unset_env(t_main *main, char *arg)
 {
 	char	**env;
 	char	**temp;
@@ -80,7 +80,7 @@ int		unset_env(t_main *main)
 	while (env[++i])
 	{
 		temp = ft_split(env[i], '=');
-		if (ft_strncmp(temp[0], main->command->args[1], -1) == 0)
+		if (ft_strncmp(temp[0], arg, -1) == 0)
 			j--;
 		else
 			main->env[i] = ft_strdup(env[i]);
