@@ -12,7 +12,7 @@
 
 #include "../../../includes/minishell.h"
 
-static int	get_sizeof_args(char **args)
+int			get_sizeof_args(char **args)
 {
 	int		i;
 

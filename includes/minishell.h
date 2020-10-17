@@ -107,5 +107,9 @@ int pfd[2]);
 void					free_command_list(t_command *command);
 void					free_args(char **args);
 int						ft_echo(t_command *command, t_main *main);
-
+t_command				*get_null_command(int undef);
+int						get_sizeof_args(char **args);
+int						check_parser_error(t_command *start,
+t_command *current);
+int						parse_commands(t_main *main, char *str, int start);
 #endif

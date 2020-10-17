@@ -49,12 +49,11 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 {
 	int		str_start;
 	char	*c;
+	char	*copy;
 
 	*dst = NULL;
 	while (str[*start] == ' ')
 		*start = *start + 1;
-	c = (char*)malloc(2 * sizeof(char));
-	c[1] = '\0';
 	while (!is_valid_point_catched(str[*start]) && str[*start] &&
 			str[*start] != ' ')
 	{
@@ -63,8 +62,14 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 			return (0);
 		if (str[*start] && *start == str_start)
 		{
+			c = (char*)malloc(2 * sizeof(char));
 			c[0] = str[*start];
-			*dst = ft_strjoin(*dst, c);
+			c[1] = '\0';
+			copy = *dst;
+			*dst = ft_strjoin(copy, c);
+			if (copy)
+				free(copy);
+			free(c);
 			*start = *start + 1;
 		}
 	}

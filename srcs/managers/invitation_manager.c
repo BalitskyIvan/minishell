@@ -42,3 +42,23 @@ void	send_invitation(void)
 	ft_putstr_fd(RESET, 0);
 	word++;
 }
+
+void	wait_string(t_main *main)
+{
+	char	*line;
+
+	main->main_0 = dup(0);
+	main->main_1 = dup(1);
+	main->status = 0;
+	while (get_next_line(0, &line) != 0)
+	{
+		parse_commands(main, line, 0);
+		// if (parse_commands(main, line, 0))
+		// 	execute(main);
+		free(line);
+		free_command_list(main->command);
+		line = NULL;
+		send_invitation();
+	}
+	free(line);
+}

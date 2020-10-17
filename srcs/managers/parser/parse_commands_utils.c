@@ -15,7 +15,6 @@
 t_command	*catch_endpoint(char *str, int *start, t_main *main)
 {
 	t_command	*new;
-	int			end;
 	int			iterator;
 
 	iterator = *start;
@@ -25,17 +24,14 @@ t_command	*catch_endpoint(char *str, int *start, t_main *main)
 		iterator++;
 	while (str[iterator] == ' ')
 		iterator++;
-	if (str[iterator] == '\0')
-	{
-		new = create_obj(NULL, NULL);
-		new->undefined_arg = 1;
-		*start = iterator;
-		return (new);
-	}
 	*start = iterator;
+	if (str[iterator] == '\0')
+		return (get_null_command(1));
 	new = create_obj(get_command_str(str, *start, main),
 	get_args_str(str, *start, main));
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
+		iterator++;
+	if (str[iterator] == ';')
 		iterator++;
 	new->endpoint_type = 0;
 	*start = iterator;
@@ -45,7 +41,6 @@ t_command	*catch_endpoint(char *str, int *start, t_main *main)
 t_command	*catch_pipe(char *str, int *start, t_main *main)
 {
 	t_command	*new;
-	int			end;
 	int			iterator;
 
 	iterator = *start;
@@ -55,14 +50,9 @@ t_command	*catch_pipe(char *str, int *start, t_main *main)
 		return (NULL);
 	while (str[iterator] == ' ')
 		iterator++;
-	if (str[iterator] == '\0')
-	{
-		new = create_obj(NULL, NULL);
-		new->undefined_arg = 1;
-		*start = iterator;
-		return (new);
-	}
 	*start = iterator;
+	if (str[iterator] == '\0')
+		return (get_null_command(1));
 	new = create_obj(get_command_str(str, *start, main),
 	get_args_str(str, *start, main));
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
@@ -75,7 +65,6 @@ t_command	*catch_pipe(char *str, int *start, t_main *main)
 t_command	*catch_redirect(char *str, int *start, t_main *main)
 {
 	t_command	*new;
-	int			end;
 	int			iterator;
 
 	iterator = *start;
@@ -88,12 +77,7 @@ t_command	*catch_redirect(char *str, int *start, t_main *main)
 	while (str[iterator] == ' ')
 		iterator++;
 	if (str[iterator] == '\0')
-	{
-		new = create_obj(NULL, NULL);
-		new->undefined_arg = 2;
-		*start = iterator;
-		return (new);
-	}
+		return (get_null_command(2));
 	*start = iterator;
 	new = create_obj(get_command_str(str, *start, main),
 	get_args_str(str, *start, main));
@@ -108,7 +92,6 @@ t_command	*catch_redirect(char *str, int *start, t_main *main)
 t_command	*catch_back_redirect(char *str, int *start, t_main *main)
 {
 	t_command	*new;
-	int			end;
 	int			iterator;
 
 	iterator = *start;
@@ -116,17 +99,10 @@ t_command	*catch_back_redirect(char *str, int *start, t_main *main)
 		iterator++;
 	else
 		return (NULL);
-	if (str[iterator] == '<')
-		return (NULL);
 	while (str[iterator] == ' ')
 		iterator++;
 	if (str[iterator] == '\0')
-	{
-		new = create_obj(NULL, NULL);
-		new->undefined_arg = 2;
-		*start = iterator;
-		return (new);
-	}
+		return (get_null_command(2));
 	*start = iterator;
 	new = create_obj(get_command_str(str, *start, main),
 	get_args_str(str, *start, main));
@@ -141,7 +117,6 @@ t_command	*catch_back_redirect(char *str, int *start, t_main *main)
 t_command	*catch_double_redirect(char *str, int *start, t_main *main)
 {
 	t_command	*new;
-	int			end;
 	int			iterator;
 
 	iterator = *start;
@@ -152,12 +127,7 @@ t_command	*catch_double_redirect(char *str, int *start, t_main *main)
 	while (str[iterator] == ' ')
 		iterator++;
 	if (str[iterator] == '\0')
-	{
-		new = create_obj(NULL, NULL);
-		new->undefined_arg = 2;
-		*start = iterator;
-		return (new);
-	}
+		return (get_null_command(2));
 	*start = iterator;
 	new = create_obj(get_command_str(str, *start, main),
 	get_args_str(str, *start, main));
