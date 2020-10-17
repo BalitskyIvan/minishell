@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/13 14:34:32 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 13:01:00 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char					*get_env_value(t_main *main, char *key);
 char					*get_command_path(t_main *main, char *command);
 void					execute(t_main *main);
 int						change_directory(t_command *command, t_main *main);
-void					ft_exit(t_command *command);
+void					ft_exit(t_command *command, t_main *main);
 int						ft_env(t_main *main);
 char					*get_command_str(char *str, int start, t_main *main);
 char					**get_args_str(char *str, int start, t_main *main);
@@ -103,5 +103,6 @@ int						get_pipe_support(t_main *main, t_command *command, int pfd[2]);
 int						check_pipe(t_main *main, t_command *command, int pfd[2]);
 void					free_command_list(t_command *command);
 void					free_args(char **args);
+int						ft_echo(t_command *command, t_main *main);
 
 #endif

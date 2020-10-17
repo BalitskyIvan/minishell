@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/16 13:18:40 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/17 13:55:41 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		hook_my_functions(t_main *main, t_command *command)
 {
+	if (ft_strncmp(command->args[0], "exit", -1) != 0)
+		main->status = 0;
 	if (ft_strncmp(command->args[0], "pwd", -1) == 0)
 	{
 		printf("%s\n", get_env_value(main, "PWD"));
@@ -23,8 +25,10 @@ int		hook_my_functions(t_main *main, t_command *command)
 		return(ft_env(main));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
 		return(change_directory(command, main));
+	else if (ft_strncmp(command->args[0], "echo", -1) == 0)
+		return(ft_echo(command, main));
 	else if (ft_strncmp(command->args[0], "exit", -1) == 0)
-		ft_exit(command);
+		ft_exit(command, main);
 	return (0);
 }
 
@@ -35,6 +39,7 @@ int		execute_another_function(t_main *main, t_command *command)
 	int		pfd[2];
 
 	get_pipe_main(main, command, pfd);
+	errno = 0;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -51,6 +56,7 @@ int		execute_another_function(t_main *main, t_command *command)
 	else
 	{
 		wait(&pid);
+		main->status = WEXITSTATUS(pid);
 		check_pipe(main, command, pfd);
 	}
 	return (0);
@@ -69,7 +75,10 @@ void	execute(t_main *main)
 			{
 				main->command->command_str = get_command_path(main, main->command->command_str);
 				if (main->command->command_str == NULL)
+				{
+					main->status = 127;
 					send_custom_error("Command not found!");
+				}
 				else
 					execute_another_function(main, main->command);
 			}
