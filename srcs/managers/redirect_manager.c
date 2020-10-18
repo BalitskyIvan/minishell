@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 11:11:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 14:10:24 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/18 17:10:36 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		check_redirect(t_command *command)
 
 int		get_pipe_main(t_main *main, t_command *command, int pfd[2])
 {
+	(void)main;
 	if (command != NULL && command->command_str != NULL)
 	{
 		if (command->pipe != NULL && command->pipe->command_str != NULL)
@@ -40,6 +41,7 @@ int		get_pipe_main(t_main *main, t_command *command, int pfd[2])
 
 int		get_pipe_support(t_main *main, t_command *command, int pfd[2])
 {
+	(void)main;
 	if (command != NULL && command->command_str != NULL)
 	{
 		if (command->pipe != NULL && command->pipe->command_str != NULL)

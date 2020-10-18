@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 11:35:41 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/18 16:52:24 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*get_command_path(t_main *main, char *command)
 
 	result = NULL;
 	i = -1;
-	temp = get_env_value(main, "PATH");
+	if ((temp = get_env_value(main, "PATH")) == NULL)
+		return (NULL);
 	paths = ft_split(temp, ':');
 	free(temp);
 	while (paths[++i])

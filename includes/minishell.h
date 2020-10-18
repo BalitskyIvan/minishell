@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/17 14:36:29 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/18 17:05:59 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 
 # define ERROR "Error"
 # define SYNTAX_ERROR "Syntax error: "
+
+extern int		g_read_started;
+extern int		g_sigquit;
+extern int		g_sigint;
 
 typedef struct			s_command
 {
@@ -113,4 +117,7 @@ int						check_parser_error(t_command *start,
 t_command *current);
 int						parse_commands(t_main *main, char *str, int start);
 void					join_str(char **dst, char *c);
+int						env_manager(t_main *main, t_command *command, int type);
+int						ft_pwd(void);
+
 #endif

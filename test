@@ -1,7 +1,0 @@
-total 72
- 8 -rw-r--r--  1 lmallado  student   2362 Oct 17 16:32 Makefile
- 0 drwxr-xr-x  3 lmallado  student    102 Oct 17 16:32 includes
-64 -rwxr-xr-x  1 lmallado  student  29804 Oct 17 16:56 minishell
- 0 drwxr-xr-x  7 lmallado  student    238 Oct 17 16:56 srcs
- 0 -rw-------  1 lmallado  student      0 Oct 17 16:58 test
- 0 drwxr-xr-x  5 lmallado  student    170 Oct 17 16:32 utils

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 14:37:02 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/18 16:53:45 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int		hook_my_functions(t_main *main, t_command *command)
 	if (ft_strncmp(command->args[0], "exit", -1) != 0)
 		main->status = 0;
 	if (ft_strncmp(command->args[0], "pwd", -1) == 0)
-	{
-		printf("%s\n", get_env_value(main, "PWD"));
-		return (1);
-	}
+		return (ft_pwd());
 	else if (ft_strncmp(command->args[0], "env", -1) == 0)
 		return (ft_env(main));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
@@ -29,6 +26,10 @@ int		hook_my_functions(t_main *main, t_command *command)
 		return (ft_echo(command, main));
 	else if (ft_strncmp(command->args[0], "exit", -1) == 0)
 		return (ft_exit(command, main));
+	else if (ft_strncmp(command->args[0], "unset", -1) == 0)
+		return (env_manager(main, command, 1));
+	else if (ft_strncmp(command->args[0], "export", -1) == 0)
+		return (env_manager(main, command, 0));
 	return (0);
 }
 

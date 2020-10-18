@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:21:12 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/07 17:21:17 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/18 17:09:07 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void		free_args(char **args)
 
 void		free_command_list(t_command *command)
 {
-	t_command *copy;
-
 	if (command)
 	{
 		if (command->command_str)

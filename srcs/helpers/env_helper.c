@@ -6,13 +6,13 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:33:04 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 14:03:25 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/18 16:52:16 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*get_env_value(t_main *main, char *key)
+char		*get_env_value(t_main *main, char *key)
 {
 	int		i;
 	char	**temp;
@@ -25,84 +25,75 @@ char	*get_env_value(t_main *main, char *key)
 		temp = ft_split(main->env[i], '=');
 		if (ft_strncmp(temp[0], key, -1) == 0)
 		{
-			result = ft_strdup(temp[1]);
-			free(temp);
+			if (temp[1] == NULL)
+				result = ft_strdup("test");
+			else
+				result = ft_strdup(temp[1]);
+			free_args(temp);
+            break ;
 		}
+		free_args(temp);
 	}
 	return (result);
 }
 
-void	free_env(t_main *main)
+int			export_env(t_main *main, char *arg)
 {
+	char	**temp;
 	int		i;
+	int		len;
 
-	i = 0;
-	while (main->env[i])
-		i++;
-	while (i > -1)
-		free(main->env[i--]);
-	free(main->env);
-	main->env = NULL;
-}
-
-int		export_env(t_main *main, char *arg)
-{
-	char	**env;
-	int		i;
-
-	i = 0;
-	env = main->env;
-	while (env[i])
-		i++;
-	main->env = (char **)malloc(i + 2 * sizeof(char *));
 	i = -1;
-	while (env[++i])
-		main->env[i] = ft_strdup(env[i]);
-	main->env[i] = ft_strdup(arg);
-	main->env[i + 1] = NULL;
+	len = get_sizeof_args(main->env);
+	temp = (char **)malloc((len + 2) * sizeof(char *));
+	while (++i < len)
+		temp[i] = ft_strdup(main->env[i]);
+	temp[i] = ft_strdup(arg);
+	temp[i + 1] = 0;
+	free_args(main->env);
+	main->env = temp;
 	return (1);
 }
 
-int		unset_env(t_main *main, char *arg)
+int			unset_env(t_main *main, char *arg)
 {
-	char	**env;
 	char	**temp;
+	char	**ptr;
+	int		len;
 	int		i;
 	int		j;
 
-	i = 0;
-	env = main->env;
-	while (env[i])
-		i++;
-	main->env = (char **)malloc(i * sizeof(char *));
 	i = -1;
 	j = 0;
-	while (env[++i])
+	len = get_sizeof_args(main->env);
+	temp = (char **)malloc((len) * sizeof(char *));
+	while (++i < len)
 	{
-		temp = ft_split(env[i], '=');
-		if (ft_strncmp(temp[0], arg, -1) == 0)
-			j--;
-		else
-			main->env[i] = ft_strdup(env[i]);
-		j++;
-		free(temp);
+	    ptr = ft_split(main->env[i], '=');
+		if (ft_strncmp(ptr[0], arg, -1) == 0)
+		{
+			continue ;
+			free_args(ptr);
+		}
+		free_args(ptr);
+		temp[j++] = ft_strdup(main->env[i]);
 	}
-	main->env[i] = NULL;
+	temp[j] = 0;
+	free_args(main->env);
+	main->env = temp;
 	return (1);
 }
 
-int		copy_env(char *env[], t_main *main)
+int			copy_env(char *env[], t_main *main)
 {
+	int		len;
 	int		i;
-
-	i = 0;
-	while (env[i])
-		i++;
-	main->env = (char **)malloc(i + 1 * sizeof(char *));
-	send_error();
+	
 	i = -1;
-	while (env[++i])
+	len = get_sizeof_args(env);
+	main->env = (char **)malloc((len + 1) * sizeof(char *));
+	while (++i < len)
 		main->env[i] = ft_strdup(env[i]);
-	main->env[i] = NULL;
+	main->env[i] = 0;
 	return (1);
 }

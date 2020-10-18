@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/13 13:41:18 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/18 17:08:34 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 GNL_DIR = $(UTILS_DIR)/gnl
 
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 C_FILES = $(SCR_DIR)/main.c\
 		$(GNL_DIR)/get_next_line.c\
@@ -45,7 +45,8 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(MANAGERS_DIR)/custom_functions/my_custom_functions.c\
 		$(MANAGERS_DIR)/custom_functions/change_directory.c\
 		$(MANAGERS_DIR)/redirect_manager.c\
-		$(HELPERS_DIR)/files_helper.c
+		$(HELPERS_DIR)/files_helper.c\
+		$(MANAGERS_DIR)/custom_functions/env_functions.c
 
 O_FILES = $(C_FILES:.c=.o)
 
