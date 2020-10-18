@@ -53,8 +53,8 @@ void	wait_string(t_main *main)
 	while (get_next_line(0, &line) != 0)
 	{
 		parse_commands(main, line, 0);
-		// if (parse_commands(main, line, 0))
-		// 	execute(main);
+		if (parse_commands(main, line, 0))
+			execute(main);
 		free(line);
 		free_command_list(main->command);
 		line = NULL;

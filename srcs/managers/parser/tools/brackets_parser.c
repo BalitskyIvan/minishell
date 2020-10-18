@@ -29,17 +29,14 @@ t_main *main)
 		end++;
 	if (str[begin] == '?')
 	{
-		*dst = ft_strjoin(*dst, ft_itoa(main->status));
+		join_str(dst, ft_itoa(main->status));
 		*start = begin + 1;
 		return ;
 	}
 	key = ft_substr(str, begin, end - begin);
 	res = get_env_value(main, key);
 	if (res != NULL)
-	{
-		*dst = ft_strjoin(*dst, res);
-		free(res);
-	}
+		join_str(dst, res);
 	*start = end;
 	free(key);
 }
@@ -50,38 +47,39 @@ int			skip_single_brackets(char **dst, char *str, int start)
 
 	if (str[start] == '\'')
 		start++;
-	c = (char*)malloc(2 * sizeof(char));
-	c[1] = '\0';
 	while (str[start] != '\'' && str[start])
 	{
+		c = (char*)malloc(2 * sizeof(char));
+		c[1] = '\0';
 		c[0] = str[start];
-		*dst = ft_strjoin(*dst, c);
+		join_str(dst, c);
 		start++;
 	}
-	free(c);
 	if (str[start] == '\'')
 		return (start + 1);
 	return (0);
 }
 
-static int	skip_shield(char **c, char **dst, char *str, int *start)
+static int	skip_shield(char **dst, char *str, int *start)
 {
-	(*c)[0] = str[*start];
+	char *c;
+
 	if (str[*start] == '\\')
 	{
 		if (str[*start + 1] == '"')
-		{
-			free(*c);
 			return (0);
-		}
 		if (str[*start + 1] == '\\')
 			*start = *start + 1;
 		else
 		{
 			if (str[*start + 1] != '$')
-				*dst = ft_strjoin(*dst, *c);
+			{
+				c = (char*)malloc(2 * sizeof(char));
+				c[1] = '\0';
+				c[0] = str[*start];
+				join_str(dst, c);
+			}
 			*start = *start + 1;
-			(*c)[0] = str[*start];
 		}
 	}
 	return (1);
@@ -91,8 +89,6 @@ int			skip_double_brackets(char **dst, char *str, int start, t_main *main)
 {
 	char	*c;
 
-	c = (char*)malloc(2 * sizeof(char));
-	c[1] = '\0';
 	if (str[start] == '"')
 		start++;
 	while (str[start] != '"' && str[start])
@@ -101,13 +97,15 @@ int			skip_double_brackets(char **dst, char *str, int start, t_main *main)
 			get_environment_variable(dst, str, &start, main);
 		else
 		{
-			if (!skip_shield(&c, dst, str, &start))
+			if (!skip_shield(dst, str, &start))
 				return (0);
-			*dst = ft_strjoin(*dst, c);
+			c = (char*)malloc(2 * sizeof(char));
+			c[1] = '\0';
+			c[0] = str[start];
+			join_str(dst, c);
 			start++;
 		}
 	}
-	free(c);
 	if (str[start] == '"')
 		return (start + 1);
 	return (0);

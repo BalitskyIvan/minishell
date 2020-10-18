@@ -39,6 +39,7 @@ int			check_parser_error(t_command *start, t_command *current)
 	}
 	return (0);
 }
+
 void		free_args(char **args)
 {
 	int	i;

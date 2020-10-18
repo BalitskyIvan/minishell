@@ -51,7 +51,6 @@ t_command *last_redirect, t_command *copy)
 	}
 }
 
-
 static void			write_if_pipe(t_command *current, t_command *last_pipe,
 t_command *last_redirect, t_command *copy)
 {

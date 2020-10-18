@@ -44,3 +44,14 @@ t_command	*create_obj(char *command_string, char **args)
 	}
 	return (command);
 }
+
+void		join_str(char **dst, char *c)
+{
+	char	*copy;
+
+	copy = *dst;
+	*dst = ft_strjoin(copy, c);
+	if (copy)
+		free(copy);
+	free(c);
+}

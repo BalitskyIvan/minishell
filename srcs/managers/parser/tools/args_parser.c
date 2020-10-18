@@ -23,9 +23,8 @@ int			skip_shielding(char **dst, char *str, int start)
 	c = (char*)malloc(2 * sizeof(char));
 	c[1] = '\0';
 	c[0] = str[start];
-	*dst = ft_strjoin(*dst, c);
+	join_str(dst, c);
 	start++;
-	free(c);
 	return (start);
 }
 
@@ -49,7 +48,6 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 {
 	int		str_start;
 	char	*c;
-	char	*copy;
 
 	*dst = NULL;
 	while (str[*start] == ' ')
@@ -65,11 +63,7 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 			c = (char*)malloc(2 * sizeof(char));
 			c[0] = str[*start];
 			c[1] = '\0';
-			copy = *dst;
-			*dst = ft_strjoin(copy, c);
-			if (copy)
-				free(copy);
-			free(c);
+			join_str(dst, c);
 			*start = *start + 1;
 		}
 	}

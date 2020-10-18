@@ -112,4 +112,5 @@ int						get_sizeof_args(char **args);
 int						check_parser_error(t_command *start,
 t_command *current);
 int						parse_commands(t_main *main, char *str, int start);
+void					join_str(char **dst, char *c);
 #endif
