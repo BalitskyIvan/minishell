@@ -95,13 +95,13 @@ int					parse_commands(t_main *main, char *str, int start)
 	last_pipe = NULL;
 	last_redirect = NULL;
 	current = catch_command(str, &start, main);
-	if (check_parser_error(current, current))
+	if (check_parser_error(current, current, 0))
 		return (0);
 	main->command = current;
 	while (str[start] != '\0')
 	{
 		copy = catch_command(str, &start, main);
-		if (check_parser_error(main->command, copy))
+		if (check_parser_error(main->command, copy, 1))
 			return (0);
 		write_if_endpoint(&current, &last_pipe, &last_redirect, &copy);
 		write_if_pipe(&current, &last_pipe, &last_redirect, &copy);

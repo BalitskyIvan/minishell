@@ -98,13 +98,6 @@ char		**parse_args(int args_size, char *str, int start, t_main *main) {
             return (NULL);
         }
     }
-    if (i == 0)
-    {
-        free(args[0]);
-        free(args);
-        return (NULL);
-    }
-    else
-        args[i + 1] = NULL;
+    args[i + 1] = NULL;
     return (args);
 }

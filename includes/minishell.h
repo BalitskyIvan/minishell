@@ -114,7 +114,7 @@ int						ft_echo(t_command *command, t_main *main);
 t_command				*get_null_command(int undef);
 int						get_sizeof_args(char **args);
 int						check_parser_error(t_command *start,
-t_command *current);
+t_command *current, int mode);
 int						parse_commands(t_main *main, char *str, int start);
 void					join_str(char **dst, char *c);
 int						env_manager(t_main *main, t_command *command, int type);

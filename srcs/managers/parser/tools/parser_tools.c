@@ -29,13 +29,14 @@ t_command	*get_null_command(int undef)
 	return (new);
 }
 
-int			check_parser_error(t_command *start, t_command *current)
+int			check_parser_error(t_command *start, t_command *current, int mode)
 {
 	if (current->undefined_arg != 0)
 	{
 		send_custom_error("Double cuote or something like this catched");
 		free_command_list(start);
-		free_command_list(current);
+		if (mode == 1)
+		    free_command_list(current);
 		return (1);
 	}
 	return (0);
