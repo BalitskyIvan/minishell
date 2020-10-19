@@ -75,8 +75,11 @@ char		**parse_args(int args_size, char *str, int start, t_main *main)
 	char	**args;
 	char	*arg;
 	int		i;
+	int     i2;
+
 
 	i = 0;
+	i2 = 0;
 	args = (char**)malloc((args_size + 1) * sizeof(char*));
 	args[i] = get_command_str(str, start, main);
 	while (str[start] != ' ' && str[start] &&
@@ -91,10 +94,15 @@ char		**parse_args(int args_size, char *str, int start, t_main *main)
 		}
 		else
 		{
-			free_args(args);
+			while (i2 < i)
+            {
+			    free(args[i2]);
+			    i2++;
+            }
+            free(args);
 			return (NULL);
 		}
-	}
-	args[i + 1] = NULL;
-	return (args);
+    }
+    args[i + 1] = NULL;
+    return (args);
 }

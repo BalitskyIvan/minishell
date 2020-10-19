@@ -46,6 +46,7 @@ void	send_invitation(void)
 void	wait_string(t_main *main)
 {
 	char	*line;
+	t_command *first;
 
 	main->main_0 = dup(0);
 	main->main_1 = dup(1);
@@ -54,8 +55,9 @@ void	wait_string(t_main *main)
 	{
 		if (parse_commands(main, line, 0))
         {
+		    first = main->command;
             execute(main);
-            free_command_list(main->command);
+            free_command_list(first);
         }
 		free(line);
 		line = NULL;

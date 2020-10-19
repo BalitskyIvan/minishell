@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/19 15:02:35 by mklotz           ###   ########.fr        #
+#    Updated: 2020/10/19 18:29:56 by lmallado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 GNL_DIR = $(UTILS_DIR)/gnl
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 C_FILES = $(SCR_DIR)/main.c\
 		$(GNL_DIR)/get_next_line.c\

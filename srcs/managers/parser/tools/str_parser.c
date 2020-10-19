@@ -51,8 +51,13 @@ char		*get_command_str(char *str, int start, t_main *main)
 	int		s;
 
 	s = start;
-	skip_brackets(&res, str, &s, main);
-	return (res);
+	if (!skip_brackets(&res, str, &s, main))
+	{
+	    free(res);
+        return (NULL);
+    }
+	else
+        return (res);
 }
 
 char		**get_args_str(char *str, int start, t_main *main)
