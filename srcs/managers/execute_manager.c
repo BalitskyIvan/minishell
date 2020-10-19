@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 14:54:38 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/19 19:27:09 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		execute_another_function(t_main *main, t_command *command)
 
 void	execute(t_main *main)
 {
+	char	*temp;
 	errno = 0;
 	if (main->command == NULL)
 		send_custom_error("Command not found!");
@@ -73,8 +74,10 @@ void	execute(t_main *main)
 		{
 			if (hook_my_functions(main, main->command) == 0)
 			{
+				temp = main->command->command_str;
 				main->command->command_str = get_command_path(main,
 				main->command->command_str);
+				free(temp);
 				if (main->command->command_str == NULL)
 				{
 					main->status = 127;

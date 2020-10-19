@@ -6,13 +6,13 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/18 16:52:24 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/19 19:26:52 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*check_acting_patch(t_main *main, char *command)
+char	*check_acting_patch(char *command)
 {
 	char	*result;
 	char	*temp;
@@ -21,10 +21,11 @@ char	*check_acting_patch(t_main *main, char *command)
 
 	result = NULL;
 	i = -1;
-	temp = get_env_value(main, "PWD");
+	temp = getcwd(NULL, 2000);
 	temp2 = ft_strjoin(temp, "/");
 	free(temp);
 	result = ft_strjoin(temp2, command);
+	free(temp2);
 	if (access(result, 1) == 0)
 		return (result);
 	free(result);
@@ -59,5 +60,6 @@ char	*get_command_path(t_main *main, char *command)
 			result = NULL;
 		}
 	}
-	return ((result == NULL) ? check_acting_patch(main, command) : result);
+	free_args(paths);
+	return ((result == NULL) ? check_acting_patch(command) : result);
 }
