@@ -52,11 +52,35 @@ t_command	*create_obj(char *command_string, char **args)
 void		join_str(char **dst, char *c)
 {
 	char	*copy;
+	int i;
+	int i2;
+	int i3;
 
-	copy = ft_strdup(*dst);
-	free(*dst);
-	*dst = ft_strjoin(copy, c);
-	if (copy)
-	    free(copy);
-	free(c);
+	i = 0;
+	i3 = 0;
+	i2 = ft_strlen(c);
+	copy = (char*)malloc((ft_strlen(*dst)+ft_strlen(c) + 1)*sizeof(char));
+    while ((*dst)[i])
+    {
+        copy[i] = (*dst)[i];
+        i++;
+    }
+    while (i3 < i2)
+    {
+        copy[i] = c[i3];
+        i3++;
+        i++;
+    }
+    copy[i] = '\0';
+    i3 = 0;
+    //free(*dst);
+    free(c);
+    *dst = (char*)malloc((i + 1)*sizeof(char));
+    while (i3 < i)
+    {
+        (*dst)[i3] = copy[i3];
+        i3++;
+    }
+    (*dst)[i3] = '\0';
+    free(copy);
 }

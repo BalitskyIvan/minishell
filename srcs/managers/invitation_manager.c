@@ -57,7 +57,7 @@ void	wait_string(t_main *main)
         {
 		    first = main->command;
             execute(main);
-            free_command_list(first);
+           // free_command_list(first);
         }
 		free(line);
 		line = NULL;

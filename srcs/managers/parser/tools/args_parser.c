@@ -49,7 +49,6 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 	int		str_start;
 	char	*c;
 
-	*dst = NULL;
 	while (str[*start] == ' ')
 		*start = *start + 1;
 	while (!is_valid_point_catched(str[*start]) && str[*start] &&
@@ -81,6 +80,7 @@ char		**parse_args(int args_size, char *str, int start, t_main *main) {
     i2 = 0;
     args = (char **) malloc((args_size + 1) * sizeof(char *));
     args[i] = get_command_str(str, start, main);
+    arg = ft_strdup("");
     while (str[start] != ' ' && str[start] &&
            !is_valid_point_catched(str[start]))
         start++;

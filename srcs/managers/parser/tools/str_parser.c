@@ -51,6 +51,7 @@ char		*get_command_str(char *str, int start, t_main *main)
 	int		s;
 
 	s = start;
+	res = ft_strdup("");
 	if (!skip_brackets(&res, str, &s, main))
 	{
 	    free(res);
