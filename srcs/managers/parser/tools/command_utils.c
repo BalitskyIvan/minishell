@@ -51,7 +51,5 @@ void		join_str(char **dst, char *c)
 
 	copy = *dst;
 	*dst = ft_strjoin(copy, c);
-	if (copy)
-		free(copy);
 	free(c);
 }
