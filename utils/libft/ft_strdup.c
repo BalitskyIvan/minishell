@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 18:37:54 by mklotz            #+#    #+#             */
-/*   Updated: 2020/05/18 14:46:19 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/19 14:59:08 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strdup(const char *str)
 	char	*result;
 
 	len = ft_strlen((char *)str);
+	if (str == NULL)
+        return (NULL);
 	result = (char *)malloc(len * sizeof(char) + 1);
 	if (!result)
 		return (NULL);

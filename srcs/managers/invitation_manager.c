@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/17 14:07:51 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/19 14:56:03 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ void	wait_string(t_main *main)
 	main->status = 0;
 	while (get_next_line(0, &line) != 0)
 	{
-		parse_commands(main, line, 0);
 		if (parse_commands(main, line, 0))
-			execute(main);
+        {
+            execute(main);
+            free_command_list(main->command);
+        }
 		free(line);
-		free_command_list(main->command);
 		line = NULL;
 		send_invitation();
 	}
