@@ -49,7 +49,8 @@ void		join_str(char **dst, char *c)
 {
 	char	*copy;
 
-	copy = *dst;
+	copy = ft_strdup(*dst);
+	free(*dst);
 	*dst = ft_strjoin(copy, c);
 	if (copy)
 	    free(copy);
