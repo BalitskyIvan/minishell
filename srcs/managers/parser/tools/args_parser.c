@@ -94,12 +94,13 @@ char		**parse_args(int args_size, char *str, int start, t_main *main)
 		}
 		else
 		{
-			while (i2 < i)
+			while (i2 < args_size - 1)
             {
 			    free(args[i2]);
 			    i2++;
             }
             free(args);
+			free(arg);
 			return (NULL);
 		}
     }

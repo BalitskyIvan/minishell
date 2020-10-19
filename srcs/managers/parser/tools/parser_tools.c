@@ -33,6 +33,8 @@ int			check_parser_error(t_command *start, t_command *current)
 {
 	if (current->undefined_arg != 0)
 	{
+	    if (current->undefined_arg == 4)
+            free_command_list(current);
 		send_custom_error("Double cuote or something like this catched");
 		free_command_list(start);
 		return (1);
