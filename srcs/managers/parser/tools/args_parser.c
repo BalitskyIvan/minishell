@@ -78,16 +78,20 @@ char		**parse_args(int args_size, char *str, int start, t_main *main) {
 
     i = 0;
     i2 = 0;
-    args = (char **) malloc((args_size + 1) * sizeof(char *));
+    args = (char **)malloc((args_size + 1) * sizeof(char *));
     args[i] = get_command_str(str, start, main);
-    arg = ft_strdup("");
     while (str[start] != ' ' && str[start] &&
            !is_valid_point_catched(str[start]))
-        start++;
+    start++;
     while (!is_valid_point_catched(str[start]) && str[start]) {
+        arg = ft_strdup("");
         if ((skip_brackets(&arg, str, &start, main))) {
-            i++;
-            args[i] = arg;
+            if (arg[0] != '\0') {
+                i++;
+                args[i] = arg;
+            }
+            else
+                free(arg);
         } else {
             while (i2 < args_size - 1) {
                 free(args[i2]);
