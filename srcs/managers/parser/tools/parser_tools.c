@@ -36,7 +36,7 @@ int			check_parser_error(t_command *start, t_command *current, int mode)
 		send_custom_error("Double cuote or something like this catched");
 		free_command_list(start);
 		if (mode == 1)
-		    free_command_list(current);
+			free_command_list(current);
 		return (1);
 	}
 	return (0);

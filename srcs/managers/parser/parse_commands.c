@@ -39,14 +39,14 @@ t_command **last_redirect, t_command **copy)
 		{
 			*last_redirect = *copy;
 			if (*last_pipe != NULL)
-                (*last_pipe)->redirect = *last_redirect;
+				(*last_pipe)->redirect = *last_redirect;
 			else
 				(*current)->redirect = *last_redirect;
 		}
 		else
 		{
-            (*last_redirect)->redirect = *copy;
-            (*last_redirect) = (*last_redirect)->redirect;
+			(*last_redirect)->redirect = *copy;
+			(*last_redirect) = (*last_redirect)->redirect;
 		}
 	}
 }
@@ -71,15 +71,15 @@ t_command **last_redirect, t_command **copy)
 	}
 }
 
-static void			write_if_endpoint(t_command **current, t_command **last_pipe,
-t_command **last_redirect, t_command **copy)
+static void			write_if_endpoint(t_command **current,
+t_command **last_pipe, t_command **last_redirect, t_command **copy)
 {
 	if ((*copy)->endpoint_type == 0)
 	{
 		(*current)->next = *copy;
 		(*current) = (*current)->next;
-        (*last_pipe) = NULL;
-        (*last_redirect) = NULL;
+		(*last_pipe) = NULL;
+		(*last_redirect) = NULL;
 	}
 }
 

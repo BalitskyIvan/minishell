@@ -69,39 +69,41 @@ int			skip_brackets(char **dst, char *str, int *start, t_main *main)
 	return (1);
 }
 
-char		**parse_args(int args_size, char *str, int start, t_main *main) {
-    char **args;
-    char *arg;
-    int i;
-    int i2;
+static char	**free_pars_args(int args_size, char **args, char *arg)
+{
+	int i2;
 
+	i2 = 0;
+	while (i2 < args_size - 1)
+	{
+		free(args[i2]);
+		i2++;
+	}
+	free(args);
+	free(arg);
+	return (NULL);
+}
 
-    i = 0;
-    i2 = 0;
-    args = (char **)malloc((args_size + 1) * sizeof(char *));
-    args[i] = get_command_str(str, start, main);
-    while (str[start] != ' ' && str[start] &&
-           !is_valid_point_catched(str[start]))
-    start++;
-    while (!is_valid_point_catched(str[start]) && str[start]) {
-        arg = ft_strdup("");
-        if ((skip_brackets(&arg, str, &start, main))) {
-            if (arg[0] != '\0') {
-                i++;
-                args[i] = arg;
-            }
-            else
-                free(arg);
-        } else {
-            while (i2 < args_size - 1) {
-                free(args[i2]);
-                i2++;
-            }
-            free(args);
-            free(arg);
-            return (NULL);
-        }
-    }
-    args[i + 1] = NULL;
-    return (args);
+char		**parse_args(int args_size, char *str, int start, t_main *main)
+{
+	char	**args;
+	char	*arg;
+	int		i;
+
+	i = 0;
+	args = (char **)malloc((args_size + 1) * sizeof(char *));
+	args[i] = get_command_str(str, start, main);
+	while (str[start] != ' ' && str[start] &&
+	!is_valid_point_catched(str[start]))
+		start++;
+	while (!is_valid_point_catched(str[start]) && str[start])
+	{
+		arg = ft_strdup("");
+		if ((skip_brackets(&arg, str, &start, main)))
+			write_to_args(arg, args, &i);
+		else
+			return (free_pars_args(args_size, args, arg));
+	}
+	args[i + 1] = NULL;
+	return (args);
 }

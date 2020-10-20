@@ -54,11 +54,11 @@ char		*get_command_str(char *str, int start, t_main *main)
 	res = ft_strdup("");
 	if (!skip_brackets(&res, str, &s, main))
 	{
-	    free(res);
-        return (NULL);
-    }
+		free(res);
+		return (NULL);
+	}
 	else
-        return (res);
+		return (res);
 }
 
 char		**get_args_str(char *str, int start, t_main *main)

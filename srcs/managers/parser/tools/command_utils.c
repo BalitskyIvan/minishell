@@ -37,10 +37,10 @@ t_command	*create_obj(char *command_string, char **args)
 	command = init_command_basic();
 	if (command_string == NULL || args == NULL)
 	{
-        command->args = args;
-        command->command_str = command_string;
-        command->undefined_arg = 1;
-    }
+		command->args = args;
+		command->command_str = command_string;
+		command->undefined_arg = 1;
+	}
 	else
 	{
 		command->args = args;
@@ -55,6 +55,17 @@ void		join_str(char **dst, char *c)
 
 	copy = *dst;
 	*dst = ft_strjoin(*dst, c);
-    free(copy);
+	free(copy);
 	free(c);
+}
+
+void		write_to_args(char *arg, char **args, int *i)
+{
+	if (arg[0] != '\0')
+	{
+		*i = *i + 1;
+		args[*i] = arg;
+	}
+	else
+		free(arg);
 }
