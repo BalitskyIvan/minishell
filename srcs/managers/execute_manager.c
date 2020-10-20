@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 11:58:50 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:12:55 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,20 @@ void	execute(t_main *main)
 		send_custom_error("Command not found!");
 	while (main->command != NULL)
 	{
-		if (main->command->command_str != NULL)
+		if (hook_my_functions(main, main->command) == 0)
 		{
-			if (hook_my_functions(main, main->command) == 0)
+			temp = main->command->command_str;
+			main->command->command_str = get_command_path(main,
+			main->command->command_str);
+			free(temp);
+			if (main->command->command_str == NULL)
 			{
-				temp = main->command->command_str;
-				main->command->command_str = get_command_path(main,
-				main->command->command_str);
-				free(temp);
-				if (main->command->command_str == NULL)
-				{
-					main->status = 127;
-					send_custom_error("Command not found!");
-				}
-				else
-					execute_another_function(main, main->command);
+				main->status = 127;
+				send_custom_error("Command not found!");
 			}
+			else
+				execute_another_function(main, main->command);
 		}
-		else
-			send_custom_error("Command not found!");
 		main->command = main->command->next;
 	}
 }

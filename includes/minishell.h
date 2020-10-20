@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/18 17:05:59 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:15:41 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ int						env_manager(t_main *main, t_command *command, int type);
 void					ft_get_pipe(t_main *main, t_command *command, int type);
 int						ft_pwd(t_main *main, t_command *command);
 void					write_to_args(char *arg, char **args, int *i);
+
 #endif

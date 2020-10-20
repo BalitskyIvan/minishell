@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 12:57:15 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:27:35 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		ft_env(t_main *main)
 void	ft_get_pipe(t_main *main, t_command *command, int type)
 {
 	int		pfd[2];
+	char	*temp;
 
 	dup2(main->main_1, 1);
 	if (command->pipe != NULL)
@@ -78,7 +79,9 @@ void	ft_get_pipe(t_main *main, t_command *command, int type)
 		}
 		else
 		{
+			temp = command->command_str;
 			command->command_str = get_command_path(main, command->command_str);
+			free(temp);
 			execute_another_function(main, command);
 		}
 	}

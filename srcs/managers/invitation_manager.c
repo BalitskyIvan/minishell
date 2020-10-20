@@ -6,16 +6,16 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 12:36:58 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:07:34 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*random_color(void)
+char			*random_color(void)
 {
-	static int		color = 0;
-	static char		colors[8][10] = {"\033[0;30m", "\033[0;31m",\
+	static int	color = 0;
+	static char	colors[8][10] = {"\033[0;30m", "\033[0;31m",\
 	"\033[0;32m", "\033[0;33m", "\033[0;34m",\
 	"\033[0;35m", "\033[0;36m", "\033[0;37m"};
 
@@ -25,10 +25,10 @@ char	*random_color(void)
 	return (colors[color]);
 }
 
-void	send_invitation(void)
+void			send_invitation(void)
 {
-	char			*color;
-	static int		word = 0;
+	char		*color;
+	static int	word = 0;
 
 	color = random_color();
 	ft_putstr_fd(color, 0);
@@ -43,7 +43,7 @@ void	send_invitation(void)
 	word++;
 }
 
-void	check_signals(int ret, char *line, t_main *main)
+void			check_signals(int ret, char *line, t_main *main)
 {
 	if (ret == 0 && ft_strlen(line) == 0)
 	{
@@ -52,23 +52,17 @@ void	check_signals(int ret, char *line, t_main *main)
 	}
 }
 
-void	wait_string(t_main *main)
+void			wait_string(t_main *main)
 {
-	char	*line;
-	int		ret;
-	t_command *first;
+	char		*line;
+	int			ret;
+	t_command	*first;
 
-	main->main_0 = dup(0);
-	main->main_1 = dup(1);
-	main->status = 0;
 	while ((ret = get_next_line(0, &line)) != -1)
 	{
 		check_signals(ret, line, main);
-		if (g_sigquit)
-		{
+		if (g_sigquit && (g_sigquit = 0) == 0)
 			free(line);
-			g_sigquit = 0;
-		}
 		else
 		{
 			if (parse_commands(main, line, 0))

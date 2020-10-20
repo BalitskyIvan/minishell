@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/19 18:29:56 by lmallado         ###   ########.fr        #
+#    Updated: 2020/10/20 15:35:14 by lmallado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 GNL_DIR = $(UTILS_DIR)/gnl
 
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 C_FILES = $(SCR_DIR)/main.c\
 		$(GNL_DIR)/get_next_line.c\
@@ -58,7 +58,7 @@ all: $(NAME)
 
 $(NAME): $(O_FILES)
 	$(MAKE) -C $(LIBFT_DIR) all
-	$(CC) $(LIBFT_DIR)/$(LIBFT_NAME) $(O_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT_NAME) $(O_FILES) -o $(NAME)
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@

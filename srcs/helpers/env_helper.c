@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:33:04 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 11:53:13 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:05:00 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char		*get_env_value(t_main *main, char *key)
 			else
 				result = ft_strdup(temp[1]);
 			free_args(temp);
-            break ;
+			break ;
 		}
 		free_args(temp);
 	}
@@ -69,7 +69,7 @@ int			unset_env(t_main *main, char *arg)
 	temp = (char **)malloc((len) * sizeof(char *));
 	while (++i < len)
 	{
-	    ptr = ft_split(main->env[i], '=');
+		ptr = ft_split(main->env[i], '=');
 		if (ft_strncmp(ptr[0], arg, -1) == 0)
 		{
 			free_args(ptr);
@@ -88,7 +88,7 @@ int			copy_env(char *env[], t_main *main)
 {
 	int		len;
 	int		i;
-	
+
 	i = -1;
 	len = get_sizeof_args(env);
 	main->env = (char **)malloc((len + 1) * sizeof(char *));

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:49:11 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 15:01:57 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:10:44 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_strlen(const char *str)
 
 	result = 0;
 	if (str == NULL)
-        return (0);
+		return (0);
 	while (str[result])
 	{
 		result++;

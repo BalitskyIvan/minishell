@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 18:44:21 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/20 11:52:06 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:08:52 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			get_home_path(char *path, t_main *main)
 	char	*temp;
 	char	*temp2;
 	char	*temp3;
-	
+
 	if (path == NULL || path[1] == '\0')
 		temp = get_env_value(main, "HOME");
 	else

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 19:26:52 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 15:02:59 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ char	*check_acting_patch(char *command)
 	return (NULL);
 }
 
+char	**kostil_3000(t_main *main)
+{
+	char	*temp;
+	char	**paths;
+
+	if ((temp = get_env_value(main, "PATH")) == NULL)
+		return (NULL);
+	paths = ft_split(temp, ':');
+	free(temp);
+	return (paths);
+}
+
 char	*get_command_path(t_main *main, char *command)
 {
 	char	*result;
@@ -43,10 +55,8 @@ char	*get_command_path(t_main *main, char *command)
 
 	result = NULL;
 	i = -1;
-	if ((temp = get_env_value(main, "PATH")) == NULL)
+	if ((paths = kostil_3000(main)) == NULL)
 		return (NULL);
-	paths = ft_split(temp, ':');
-	free(temp);
 	while (paths[++i])
 	{
 		temp = ft_strjoin(paths[i], "/");
