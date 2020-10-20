@@ -66,7 +66,7 @@ static int	skip_shield(char **dst, char *str, int *start)
 
 	if (str[*start] == '\\')
 	{
-		if (str[*start + 1] == '"')
+		if (str[*start + 1] == '"' && str[*start + 2] != '"')
 			return (0);
 		if (str[*start + 1] == '\\')
 			*start = *start + 1;

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/20 15:15:41 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 19:31:44 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,19 @@ char					*get_command_path(t_main *main, char *command);
 void					execute(t_main *main);
 int						change_directory(t_command *command, t_main *main);
 int						ft_exit(t_command *command, t_main *main);
-int						ft_env(t_main *main);
+int						ft_env(t_main *main, t_command *command);
 char					*get_command_str(char *str, int start, t_main *main);
 char					**get_args_str(char *str, int start, t_main *main);
 t_command				*create_obj(char *command_string, char **args);
 t_command				*catch_endpoint(char *str, int *start, t_main *main);
 void					print_commands(t_command *command, char *dsc);
 t_command				*catch_pipe(char *str, int *start, t_main *main);
-t_command				*catch_redirect(char *str, int *start, t_main *main);
+t_command				*catch_redirect(char *str, int *start, t_main *main,
+                             t_command *current);
 t_command				*catch_back_redirect(char *str, int *start,
-t_main *main);
+t_main *main, t_command *current);
 t_command				*catch_double_redirect(char *str, int *start,
-t_main *main);
+t_main *main, t_command *current);
 char					**parse_args(int args_size, char *str,
 int start, t_main *main);
 int						skip_single_brackets(char **dst, char *str, int start);
@@ -121,5 +122,6 @@ int						env_manager(t_main *main, t_command *command, int type);
 void					ft_get_pipe(t_main *main, t_command *command, int type);
 int						ft_pwd(t_main *main, t_command *command);
 void					write_to_args(char *arg, char **args, int *i);
+void                    join_args(t_command *dst, char **args);
 
 #endif

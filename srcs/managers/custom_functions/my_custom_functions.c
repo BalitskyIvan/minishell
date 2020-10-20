@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 15:27:35 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 18:14:12 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,19 @@ int		ft_exit(t_command *command, t_main *main)
 	return (1);
 }
 
-int		ft_env(t_main *main)
+int		ft_env(t_main *main, t_command *command)
 {
 	int		i;
 
 	i = -1;
+	ft_get_pipe(main, command, 0);
+	check_redirect(command);
 	while (main->env[++i])
 	{
 		ft_putstr_fd(main->env[i], 1);
 		ft_putstr_fd("\n", 1);
 	}
+	ft_get_pipe(main, command, 1);
 	return (1);
 }
 

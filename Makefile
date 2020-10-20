@@ -6,7 +6,7 @@
 #    By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 14:31:11 by mklotz            #+#    #+#              #
-#    Updated: 2020/10/20 15:35:14 by lmallado         ###   ########.fr        #
+#    Updated: 2020/10/20 19:30:38 by mklotz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ C_FILES = $(SCR_DIR)/main.c\
 		$(MANAGERS_DIR)/custom_functions/change_directory.c\
 		$(MANAGERS_DIR)/redirect_manager.c\
 		$(HELPERS_DIR)/files_helper.c\
-		$(MANAGERS_DIR)/custom_functions/env_functions.c
+		$(MANAGERS_DIR)/custom_functions/env_functions.c\
+		$(PARSER_DIR)/tools/join_args.c
 
 O_FILES = $(C_FILES:.c=.o)
 

@@ -12,7 +12,8 @@
 
 #include "../../../includes/minishell.h"
 
-static t_command	*catch_command(char *str, int *start, t_main *main)
+static t_command	*catch_command(char *str, int *start, t_main *main,
+                                t_command *current)
 {
 	t_command	*new;
 
@@ -22,11 +23,11 @@ static t_command	*catch_command(char *str, int *start, t_main *main)
 	if (new == NULL)
 		new = catch_pipe(str, start, main);
 	if (new == NULL)
-		new = catch_redirect(str, start, main);
+		new = catch_redirect(str, start, main, current);
 	if (new == NULL)
-		new = catch_back_redirect(str, start, main);
+		new = catch_back_redirect(str, start, main, current);
 	if (new == NULL)
-		new = catch_double_redirect(str, start, main);
+		new = catch_double_redirect(str, start, main, current);
 	return (new);
 }
 
@@ -94,13 +95,13 @@ int					parse_commands(t_main *main, char *str, int start)
 		return (0);
 	last_pipe = NULL;
 	last_redirect = NULL;
-	current = catch_command(str, &start, main);
+	current = catch_command(str, &start, main, NULL);
 	if (check_parser_error(current, current, 0))
 		return (0);
 	main->command = current;
 	while (str[start] != '\0')
 	{
-		copy = catch_command(str, &start, main);
+		copy = catch_command(str, &start, main, current);
 		if (check_parser_error(main->command, copy, 1))
 			return (0);
 		write_if_endpoint(&current, &last_pipe, &last_redirect, &copy);

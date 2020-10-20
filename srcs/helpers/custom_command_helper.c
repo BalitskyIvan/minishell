@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:42:34 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 15:02:59 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 17:59:50 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*check_acting_patch(char *command)
 		return (result);
 	free(result);
 	if (access(command, 1) == 0)
-		return (command);
+		return (ft_strdup(command));
 	return (NULL);
 }
 

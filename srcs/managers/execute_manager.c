@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 15:12:55 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 18:08:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		hook_my_functions(t_main *main, t_command *command)
 	if (ft_strncmp(command->args[0], "pwd", -1) == 0)
 		return (ft_pwd(main, command));
 	else if (ft_strncmp(command->args[0], "env", -1) == 0)
-		return (ft_env(main));
+		return (ft_env(main, command));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
 		return (change_directory(command, main));
 	else if (ft_strncmp(command->args[0], "echo", -1) == 0)
@@ -49,7 +49,7 @@ int		execute_another_function(t_main *main, t_command *command)
 		command->args, main->env);
 		if (status == -1)
 			send_custom_error("Command not found!");
-		exit(0);
+		exit(126);
 	}
 	else if (pid < 0)
 		send_error();
@@ -67,8 +67,6 @@ void	execute(t_main *main)
 	char	*temp;
 
 	errno = 0;
-	if (main->command == NULL)
-		send_custom_error("Command not found!");
 	while (main->command != NULL)
 	{
 		if (hook_my_functions(main, main->command) == 0)
@@ -82,7 +80,7 @@ void	execute(t_main *main)
 				main->status = 127;
 				send_custom_error("Command not found!");
 			}
-			else
+			if (main->command->command_str != NULL)
 				execute_another_function(main, main->command);
 		}
 		main->command = main->command->next;
