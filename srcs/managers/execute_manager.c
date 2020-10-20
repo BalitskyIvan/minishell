@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 19:27:09 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:58:50 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		hook_my_functions(t_main *main, t_command *command)
 	if (ft_strncmp(command->args[0], "exit", -1) != 0)
 		main->status = 0;
 	if (ft_strncmp(command->args[0], "pwd", -1) == 0)
-		return (ft_pwd());
+		return (ft_pwd(main, command));
 	else if (ft_strncmp(command->args[0], "env", -1) == 0)
 		return (ft_env(main));
 	else if (ft_strncmp(command->args[0], "cd", -1) == 0)
@@ -65,6 +65,7 @@ int		execute_another_function(t_main *main, t_command *command)
 void	execute(t_main *main)
 {
 	char	*temp;
+
 	errno = 0;
 	if (main->command == NULL)
 		send_custom_error("Command not found!");

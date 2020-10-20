@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 18:44:21 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/18 16:52:36 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:52:06 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void		update_pwd(t_main *main, int type)
 {
 	char		*pwd;
 	char		*tmp;
+	char		*env;
 
 	if (!(pwd = getcwd(NULL, 0)))
 		return ;
-	if (!get_env_value(main, (type == 0) ? "PWD" : "OLDPWD"))
+	if (!(env = get_env_value(main, (type == 0) ? "PWD" : "OLDPWD")))
 	{
 		free(pwd);
 		return ;
@@ -38,6 +39,7 @@ void		update_pwd(t_main *main, int type)
 	tmp = pwd;
 	pwd = ft_strjoin((type == 0) ? "PWD=" : "OLDPWD=", pwd);
 	export_env(main, pwd);
+	free(env);
 	free(tmp);
 	free(pwd);
 }

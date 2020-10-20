@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 19:26:35 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 12:57:15 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		ft_env(t_main *main)
 	return (1);
 }
 
-void	ft_echo_get_pipe(t_main *main, t_command *command, int type)
+void	ft_get_pipe(t_main *main, t_command *command, int type)
 {
 	int		pfd[2];
 
@@ -91,12 +91,12 @@ int		ft_echo(t_command *command, t_main *main)
 	int		stop;
 
 	i = 0;
-	if ((stop = 0) && command->args[1] == NULL)
+	if ((stop = 0) || command->args[1] == NULL)
 	{
 		ft_putchar_fd('\n', 1);
 		return (1);
 	}
-	ft_echo_get_pipe(main, command, 0);
+	ft_get_pipe(main, command, 0);
 	check_redirect(command);
 	while (command->args[++i])
 	{
@@ -109,6 +109,6 @@ int		ft_echo(t_command *command, t_main *main)
 	}
 	if (ft_strncmp(command->args[1], "-n", -1) != 0)
 		ft_putchar_fd('\n', 1);
-	ft_echo_get_pipe(main, command, 1);
+	ft_get_pipe(main, command, 1);
 	return (1);
 }

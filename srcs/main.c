@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:29:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/18 16:54:02 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 12:03:40 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void		ft_sigint_ignore(void)
 void		ft_sigquit_ignore(void)
 {
 	g_sigquit = 1;
-	ft_putstr_fd("exit\n", 1);
 	ft_putstr_fd("\b\b  \b\b", 1);
-	exit(0);
 }
 
 int			main(int argc, char *argv[], char *env[])

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:33:04 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/18 16:52:16 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:53:13 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int			unset_env(t_main *main, char *arg)
 	    ptr = ft_split(main->env[i], '=');
 		if (ft_strncmp(ptr[0], arg, -1) == 0)
 		{
-			continue ;
 			free_args(ptr);
+			continue ;
 		}
 		free_args(ptr);
 		temp[j++] = ft_strdup(main->env[i]);

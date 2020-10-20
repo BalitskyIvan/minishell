@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 14:56:03 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 12:36:58 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,43 @@ void	send_invitation(void)
 	word++;
 }
 
+void	check_signals(int ret, char *line, t_main *main)
+{
+	if (ret == 0 && ft_strlen(line) == 0)
+	{
+		ft_putstr_fd("exit\n", 1);
+		exit(main->status);
+	}
+}
+
 void	wait_string(t_main *main)
 {
 	char	*line;
+	int		ret;
 	t_command *first;
 
 	main->main_0 = dup(0);
 	main->main_1 = dup(1);
 	main->status = 0;
-	while (get_next_line(0, &line) != 0)
+	while ((ret = get_next_line(0, &line)) != -1)
 	{
-		if (parse_commands(main, line, 0))
-        {
-		    first = main->command;
-            execute(main);
-           // free_command_list(first);
-        }
-		free(line);
-		line = NULL;
+		check_signals(ret, line, main);
+		if (g_sigquit)
+		{
+			free(line);
+			g_sigquit = 0;
+		}
+		else
+		{
+			if (parse_commands(main, line, 0))
+			{
+				first = main->command;
+				execute(main);
+				// free_command_list(first);
+			}
+			free(line);
+			line = NULL;
+		}
 		send_invitation();
 	}
 	free(line);

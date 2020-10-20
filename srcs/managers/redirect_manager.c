@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 11:11:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/19 19:30:39 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 13:08:42 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		check_redirect(t_command *command)
 {
 	int		res;
 	int		fd;
+	char	*temp;
 
 	res = -1;
 	if (command != NULL && command->command_str != NULL)

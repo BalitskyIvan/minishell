@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:32:00 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/06 16:39:34 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/20 13:12:00 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ t_command	*create_obj(char *command_string, char **args)
 
 void		join_str(char **dst, char *c)
 {
-	char	*copy;
+	char	*temp;
 
-	copy = *dst;
-	*dst = ft_strjoin(copy, c);
-   // free(copy);
+	temp = *dst;
+	*dst = ft_strjoin(*dst, c);
 	free(c);
+	free(temp);
 }
