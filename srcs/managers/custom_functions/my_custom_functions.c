@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/21 16:32:43 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/21 17:24:07 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ int		ft_exit(t_command *command, t_main *main)
 
 	check_redirect(command);
 	dup2(main->main_1, 1);
+	error = main->status;
 	if (command->args[1] != NULL)
 	{
 		ft_exit_support(command->args[1], command, main);
 		error = ft_atoi(command->args[1]);
 	}
-	else
-		error = main->status;
 	if (get_sizeof_args(command->args) > 2)
 	{
 		ft_putstr_fd("exit\n", 2);

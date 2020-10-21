@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 14:44:58 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 13:01:58 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/21 18:05:42 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,12 @@ int		get_next_line(int fd, char **line)
 	if ((ret = memory_manager(&mem, *&line)) != 0)
 		return ((ret != -1) ? 1 : -1);
 	ptr = NULL;
-	while (!ptr && (ret = read(fd, buff, BUFFER_SIZE)))
+	while (!ptr && (ret = read(fd, buff, BUFFER_SIZE)) != -1)
 	{
+		if (!ret && !ft_strlen(*line))
+			return (777777);
+		else if (!ret)
+			ft_putstr_fd("  \b\b", 1);
 		buff[ret] = '\0';
 		if ((ptr = ft_strchr(buff, '\n')))
 		{

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/20 19:32:20 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/21 18:12:27 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ void			send_invitation(void)
 	word++;
 }
 
-void			check_signals(int ret, char *line, t_main *main)
+void			check_signals(int ret, t_main *main)
 {
-	// printf("LINE %s\n", line);
-	if (ret == 0 && ft_strlen(line) == 0)
+	if (ret == 777777)
 	{
 		ft_putstr_fd("exit\n", 1);
 		exit(main->status);
 	}
-	else
-		ft_putstr_fd("  \b\b\n", 1);
 }
 
 void			wait_string(t_main *main)
@@ -63,7 +60,7 @@ void			wait_string(t_main *main)
 
 	while ((ret = get_next_line(0, &line)) != -1)
 	{
-		// check_signals(ret, line, main);
+		check_signals(ret, main);
 		if (g_sigquit && (g_sigquit = 0) == 0)
 			free(line);
 		else
@@ -77,7 +74,8 @@ void			wait_string(t_main *main)
 			free(line);
 			line = NULL;
 		}
-		send_invitation();
+		if (!g_sigint)
+			send_invitation();
 	}
 	free(line);
 }

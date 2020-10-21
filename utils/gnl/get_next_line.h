@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 14:44:52 by mklotz            #+#    #+#             */
-/*   Updated: 2020/09/07 19:01:16 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/21 18:05:49 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "../libft/libft.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 1
 # endif
 
 void	mem_free(char **object);

@@ -36,4 +36,5 @@ void join_args(t_command *dst, char **args)
     }
     dst->args[i] = NULL;
     free_args(copy);
+    free_args(args);
 }
