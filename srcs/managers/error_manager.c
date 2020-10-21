@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:13:44 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/05 20:39:35 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/21 13:39:49 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void	send_error(void)
 
 void	send_custom_error(char *str)
 {
-	printf("%s %s\n", SYNTAX_ERROR, str);
+	ft_putstr_fd(SYNTAX_ERROR, 2);
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
 }
