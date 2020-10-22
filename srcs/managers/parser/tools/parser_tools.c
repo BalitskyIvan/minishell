@@ -24,7 +24,7 @@ t_command	*get_null_command(int undef)
 {
 	t_command	*new;
 
-	new = create_obj(NULL, NULL);
+	new = create_obj(NULL, NULL, 0);
 	new->undefined_arg = undef;
 	return (new);
 }

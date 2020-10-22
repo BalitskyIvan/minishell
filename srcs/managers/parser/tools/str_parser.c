@@ -19,11 +19,17 @@ static int	get_args_size(char *str, int start)
 	res = 1;
 	while (!is_valid_point_catched(str[start]) && str[start])
 	{
+	    if (str[start] == '\\')
+	        start += 2;
 		if (str[start] != ' ')
 		{
 			while (!is_valid_point_catched(str[start]) && str[start] &&
 			str[start] != ' ')
-				start++;
+			{
+                start++;
+                if (str[start] == '\\')
+                    start += 2;
+            }
 			res++;
 		}
 		else
@@ -38,7 +44,11 @@ static int	skip_to_args(char *str, int start)
 
 	end = start;
 	while (str[end] != ' ' && str[end])
-		end++;
+    {
+        end++;
+        if (str[end] == '\\')
+	        end+=2;
+    }
 	start = end;
 	while (str[start] == ' ' && str[start])
 		start++;

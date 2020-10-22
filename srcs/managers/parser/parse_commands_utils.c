@@ -28,7 +28,7 @@ t_command	*catch_endpoint(char *str, int *start, t_main *main)
 	if (str[iterator] == '\0')
 		return (get_null_command(4));
 	new = create_obj(get_command_str(str, *start, main),
-	get_args_str(str, *start, main));
+	get_args_str(str, *start, main), 0);
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
 		iterator++;
 	if (str[iterator] == ';')
@@ -54,7 +54,7 @@ t_command	*catch_pipe(char *str, int *start, t_main *main)
 	if (str[iterator] == '\0')
 		return (get_null_command(4));
 	new = create_obj(get_command_str(str, *start, main),
-	get_args_str(str, *start, main));
+	get_args_str(str, *start, main), 0);
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
 		iterator++;
 	*start = iterator;
@@ -79,7 +79,7 @@ t_command	*catch_redirect(char *str, int *start, t_main *main, t_command *curren
 	if (str[iterator] == '\0')
 		return (get_null_command(4));
 	*start = iterator;
-	new = create_obj(get_command_str(str, *start, main), get_args_str(str, *start, main));
+	new = create_obj(get_command_str(str, *start, main), NULL, 1);
     join_args(current, get_args_str(str, *start, main));
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
 		iterator++;
@@ -104,7 +104,7 @@ t_command	*catch_back_redirect(char *str, int *start, t_main *main, t_command *c
 	if (str[iterator] == '\0')
 		return (get_null_command(4));
 	*start = iterator;
-	new = create_obj(get_command_str(str, *start, main), get_args_str(str, *start, main));
+	new = create_obj(get_command_str(str, *start, main), NULL, 1);
     join_args(current, get_args_str(str, *start, main));
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
 		iterator++;
@@ -129,7 +129,7 @@ t_command	*catch_double_redirect(char *str, int *start, t_main *main, t_command 
 	if (str[iterator] == '\0')
 		return (get_null_command(4));
 	*start = iterator;
-	new = create_obj(get_command_str(str, *start, main), get_args_str(str, *start, main));
+	new = create_obj(get_command_str(str, *start, main), NULL, 1);
 	join_args(current, get_args_str(str, *start, main));
 	while (!is_valid_point_catched(str[iterator]) && str[iterator] != '\0')
 		iterator++;

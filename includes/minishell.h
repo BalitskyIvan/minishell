@@ -79,7 +79,7 @@ int						ft_exit(t_command *command, t_main *main);
 int						ft_env(t_main *main, t_command *command);
 char					*get_command_str(char *str, int start, t_main *main);
 char					**get_args_str(char *str, int start, t_main *main);
-t_command				*create_obj(char *command_string, char **args);
+t_command                *create_obj(char *command_string, char **args, int is_redir);
 t_command				*catch_endpoint(char *str, int *start, t_main *main);
 void					print_commands(t_command *command, char *dsc);
 t_command				*catch_pipe(char *str, int *start, t_main *main);
@@ -123,5 +123,6 @@ void					ft_get_pipe(t_main *main, t_command *command, int type);
 int						ft_pwd(t_main *main, t_command *command);
 void					write_to_args(char *arg, char **args, int *i);
 void                    join_args(t_command *dst, char **args);
+void                    print_export(t_main *main);
 
 #endif

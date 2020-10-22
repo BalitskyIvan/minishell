@@ -30,12 +30,12 @@ t_command	*init_command_basic(void)
 	return (command);
 }
 
-t_command	*create_obj(char *command_string, char **args)
+t_command	*create_obj(char *command_string, char **args, int is_redir)
 {
 	t_command	*command;
 
 	command = init_command_basic();
-	if (command_string == NULL || args == NULL)
+	if (command_string == NULL || (args == NULL && !is_redir))
 	{
 		command->args = args;
 		command->command_str = command_string;

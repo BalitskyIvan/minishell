@@ -29,6 +29,7 @@ CFLAGS = -Wall -Wextra -Werror
 C_FILES = $(SCR_DIR)/main.c\
 		$(GNL_DIR)/get_next_line.c\
 		$(HELPERS_DIR)/command_helper.c\
+		$(HELPERS_DIR)/print_export.c\
 		$(MANAGERS_DIR)/error_manager.c\
 		$(MANAGERS_DIR)/init_manager.c\
 		$(MANAGERS_DIR)/invitation_manager.c\
