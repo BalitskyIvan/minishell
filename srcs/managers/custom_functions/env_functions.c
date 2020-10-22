@@ -32,15 +32,10 @@ void		ft_export_env(t_main *main, char *arg)
 {
 	char	**temp;
 
-	if ((ft_strnstr(arg, "=", -1) != NULL && arg[0] != '=') || 1 == 1)
-	{
-		temp = ft_split(arg, '=');
-		ft_unset_env(main, temp[0]);
-		free_args(temp);
-		export_env(main, arg);
-	}
-	else
-		send_custom_error("Error argument!");
+	temp = ft_split(arg, '=');
+	ft_unset_env(main, temp[0]);
+	free_args(temp);
+	export_env(main, arg);
 }
 
 int			env_manager(t_main *main, t_command *command, int type)
@@ -52,8 +47,11 @@ int			env_manager(t_main *main, t_command *command, int type)
 	check_redirect(command);
 	if (type == 0)
 	{
-		while (command->args[++i] != NULL)
-			ft_export_env(main, command->args[i]);
+	    if (command->args[1] == NULL)
+            print_export(main);
+	    else
+            while (command->args[++i] != NULL)
+			    ft_export_env(main, command->args[i]);
 	}
 	else
 	{
@@ -63,6 +61,7 @@ int			env_manager(t_main *main, t_command *command, int type)
 	ft_get_pipe(main, command->pipe, 1);
 	return (1);
 }
+
 
 int			ft_pwd(t_main *main, t_command *command)
 {
