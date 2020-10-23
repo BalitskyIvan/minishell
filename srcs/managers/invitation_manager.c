@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:02:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/21 18:12:27 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/22 18:17:18 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void			send_invitation(void)
 	if (word == 2)
 		word = 0;
 	if (word == 0)
-		ft_putstr_fd("ПРОСТО❯ ", 1);
+		ft_putstr_fd("ПРОВЕР❯ ", 1);
 	else
-		ft_putstr_fd("ШЕЛЛ❯	", 1);
+		ft_putstr_fd("ОЧКА  ❯	", 1);
 	ft_putstr_fd(RESET, 1);
 	word++;
 }
@@ -60,6 +60,7 @@ void			wait_string(t_main *main)
 
 	while ((ret = get_next_line(0, &line)) != -1)
 	{
+		g_sigint = 0;
 		check_signals(ret, main);
 		if (g_sigquit && (g_sigquit = 0) == 0)
 			free(line);

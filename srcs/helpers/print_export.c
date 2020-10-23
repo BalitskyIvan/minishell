@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmallado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 17:56:54 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/21 17:56:58 by lmallado         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:20:20 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ static void print_result(t_main *main, int **already_exist, int size)
     i2 = 0;
     val_printed = 0;
     str = get_next_str(already_exist, main->env, size);
-    ft_putstr_fd("declare -x ", 0);
+    ft_putstr_fd("declare -x ", 1);
     while (str[i2])
     {
         if (i2 != 0 && str[i2 - 1] == '=')
         {
             val_printed = 1;
-            ft_putchar_fd('"', 0);
+            ft_putchar_fd('"', 1);
         }
-        ft_putchar_fd(str[i2], 0);
+        ft_putchar_fd(str[i2], 1);
         i2++;
     }
     if (i2 != 0 && val_printed)
-        ft_putchar_fd('"', 0);
-    ft_putstr_fd("\n", 0);
+        ft_putchar_fd('"', 1);
+    ft_putstr_fd("\n", 1);
 }
 
 void print_export(t_main *main)

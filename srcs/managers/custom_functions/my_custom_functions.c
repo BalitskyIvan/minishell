@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/21 17:24:07 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 12:17:38 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,17 @@ int		ft_env(t_main *main, t_command *command)
 	int		i;
 
 	i = -1;
-	ft_get_pipe(main, command->pipe, 0);
+	ft_get_pipe(main, command, 0);
 	check_redirect(command);
 	while (main->env[++i])
 	{
-		ft_putstr_fd(main->env[i], 1);
-		ft_putstr_fd("\n", 1);
+		if (ft_strrchr(main->env[i], '=') != 0)
+		{
+			ft_putstr_fd(main->env[i], 1);
+			ft_putstr_fd("\n", 1);
+		}
 	}
-	ft_get_pipe(main, command->pipe, 1);
+	ft_get_pipe(main, command, 1);
 	return (1);
 }
 
@@ -120,7 +123,7 @@ int		ft_echo(t_command *command, t_main *main)
 		ft_putchar_fd('\n', 1);
 		return (1);
 	}
-	ft_get_pipe(main, command->pipe, 0);
+	ft_get_pipe(main, command, 0);
 	check_redirect(command);
 	while (command->args[++i])
 	{
@@ -133,6 +136,6 @@ int		ft_echo(t_command *command, t_main *main)
 	}
 	if (ft_strncmp(command->args[1], "-n", -1) != 0)
 		ft_putchar_fd('\n', 1);
-	ft_get_pipe(main, command->pipe, 1);
+	ft_get_pipe(main, command, 1);
 	return (1);
 }
