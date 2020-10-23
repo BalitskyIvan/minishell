@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:17:44 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 12:23:48 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 12:51:36 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			env_manager(t_main *main, t_command *command, int type)
 	int		i;
 
 	i = 0;
-	// ft_get_pipe(main, command, 0);
+	ft_get_pipe(main, command->pipe, 0);
 	check_redirect(command);
 	if (type == 0)
 	{
@@ -58,7 +58,7 @@ int			env_manager(t_main *main, t_command *command, int type)
 		while (command->args[++i] != NULL)
 			ft_unset_env(main, command->args[i]);
 	}
-	// ft_get_pipe(main, command, 1);
+	ft_get_pipe(main, command->pipe, 1);
 	return (1);
 }
 
@@ -67,12 +67,12 @@ int			ft_pwd(t_main *main, t_command *command)
 {
 	char	*temp;
 
-	ft_get_pipe(main, command, 0);
+	ft_get_pipe(main, command->pipe, 0);
 	check_redirect(command);
 	temp = getcwd(NULL, 2000);
 	ft_putstr_fd(temp, 1);
 	ft_putstr_fd("\n", 1);
 	free(temp);
-	ft_get_pipe(main, command, 1);
+	ft_get_pipe(main, command->pipe, 1);
 	return (1);
 }

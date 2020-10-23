@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 14:44:58 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/21 18:05:42 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 16:35:19 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int		get_next_line(int fd, char **line)
 	char		*ptr;
 	static char	*mem;
 
-	if (fd < 0 || read(fd, buff, 0) < 0)
-		return (-1);
 	if ((ret = memory_manager(&mem, *&line)) != 0)
 		return ((ret != -1) ? 1 : -1);
 	ptr = NULL;

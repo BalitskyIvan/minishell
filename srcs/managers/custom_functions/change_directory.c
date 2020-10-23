@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 18:44:21 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/23 12:17:50 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 16:34:34 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,22 @@ int			change_directory(t_command *command, t_main *main)
 {
 	int		status;
 
-	ft_get_pipe(main, command, 0);
+	ft_get_pipe(main, command->pipe, 0);
 	check_redirect(command);
-	if (command->args[1] == NULL || command->args[1][0] == '~')
-		status = get_home_path(command->args[1], main);
-	else
+	if (command->pipe == NULL)
 	{
-		update_pwd(main, 1);
-		status = chdir(command->args[1]);
-		if (status == 0)
-			update_pwd(main, 0);
+		if (command->args[1] == NULL || command->args[1][0] == '~')
+			status = get_home_path(command->args[1], main);
+		else
+		{
+			update_pwd(main, 1);
+			status = chdir(command->args[1]);
+			if (status == 0)
+				update_pwd(main, 0);
+		}
+		if (status == -1)
+			send_custom_error("Not a valid path");
 	}
-	if (status == -1)
-		send_custom_error("Not a valid path");
-	ft_get_pipe(main, command, 1);
+	ft_get_pipe(main, command->pipe, 1);
 	return (1);
 }
