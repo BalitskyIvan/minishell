@@ -12,29 +12,29 @@
 
 #include "../../../../includes/minishell.h"
 
-void join_args(t_command *dst, char **args)
+void	join_args(t_command *dst, char **args)
 {
-    char **copy;
-    int  i;
-    int  i2;
+	char	**copy;
+	int		i;
+	int		i2;
 
-    i = 0;
-    i2 = 1;
-    copy = dst->args;
-    dst->args = (char**)malloc((get_sizeof_args(dst->args) +
-            get_sizeof_args(dst->args) + 1) * sizeof(char**));
-    while (i < get_sizeof_args(copy))
-    {
-        dst->args[i] = ft_strdup(copy[i]);
-        i++;
-    }
-    while (i2 < get_sizeof_args(args))
-    {
-        dst->args[i] = ft_strdup(args[i2]);
-        i++;
-        i2++;
-    }
-    dst->args[i] = NULL;
-    free_args(copy);
-    free_args(args);
+	i = 0;
+	i2 = 1;
+	copy = dst->args;
+	dst->args = (char**)malloc((get_sizeof_args(dst->args) +
+			get_sizeof_args(dst->args) + 1) * sizeof(char**));
+	while (i < get_sizeof_args(copy))
+	{
+		dst->args[i] = ft_strdup(copy[i]);
+		i++;
+	}
+	while (i2 < get_sizeof_args(args))
+	{
+		dst->args[i] = ft_strdup(args[i2]);
+		i++;
+		i2++;
+	}
+	dst->args[i] = NULL;
+	free_args(copy);
+	free_args(args);
 }

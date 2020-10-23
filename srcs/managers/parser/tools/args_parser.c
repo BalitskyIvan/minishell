@@ -94,11 +94,12 @@ char		**parse_args(int args_size, char *str, int start, t_main *main)
 	args = (char **)malloc((args_size + 1) * sizeof(char *));
 	args[i] = get_command_str(str, start, main);
 	while (str[start] != ' ' && str[start] &&
-	!is_valid_point_catched(str[start])) {
-        start++;
-        if (str[start] == '\\')
-            start += 2;
-    }
+	!is_valid_point_catched(str[start]))
+	{
+		start++;
+		if (str[start] == '\\')
+			start += 2;
+	}
 	while (!is_valid_point_catched(str[start]) && str[start])
 	{
 		arg = ft_strdup("");

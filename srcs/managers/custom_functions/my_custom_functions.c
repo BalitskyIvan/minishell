@@ -6,29 +6,33 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 16:28:41 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 18:13:56 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_exit_support(char *arg, t_command *command, t_main *main)
+int		ft_exit_errors(t_command *command)
 {
 	int		i;
+	int		status;
 
 	i = -1;
-	while (arg[++i])
+	status = -1;
+	if (command->args[1] != NULL)
 	{
-		if (ft_isalpha(arg[i]) > 0)
-		{
-			ft_putstr_fd("exit\n", 1);
-			send_custom_error("Numeric argument required!");
-			if (command->pipe == NULL)
-				exit(255);
-			else
-				execute_another_function(main, command->pipe);
-		}
+		while (command->args[1][++i])
+			if (ft_isalpha(command->args[1][++i]) != 0)
+				status = 255;
+		if (status != 255 && get_sizeof_args(command->args) > 2)
+			status = 1;
 	}
+	if (command->pipe == NULL)
+		ft_putstr_fd("exit\n", 1);
+	if (status != -1)
+		send_custom_error((status == 255) ? "Numeric argument required"
+										: "Too many arguments");
+	return (status);
 }
 
 int		ft_exit(t_command *command, t_main *main)
@@ -38,33 +42,23 @@ int		ft_exit(t_command *command, t_main *main)
 
 	check_redirect(command);
 	dup2(main->main_1, 1);
-	error = main->status;
+	error = ft_exit_errors(command);
+	error = (error == -1) ? main->status : error;
 	if (command->args[1] != NULL)
+		error = (error == -1) ? ft_atoi(command->args[1]) : error;
+	if (command->pipe == NULL && error != 1)
+		exit(error);
+	else if (command->pipe != NULL)
 	{
-		ft_exit_support(command->args[1], command, main);
-		error = ft_atoi(command->args[1]);
-	}
-	if (get_sizeof_args(command->args) > 2)
-	{
-		ft_putstr_fd("exit\n", 2);
-		send_custom_error("Too many arguments");
-		main->status = 1;
+		main->status = 0;
+		temp = command->pipe->command_str;
+		command->pipe->command_str = get_command_path(main,
+									command->pipe->command_str);
+		free(temp);
+		execute_another_function(main, command->pipe);
 	}
 	else
-	{
-		if (command->pipe == NULL)
-		{
-			ft_putstr_fd("exit\n", 2);
-			exit(error);
-		}
-		else
-		{
-			temp = command->pipe->command_str;
-			command->pipe->command_str = get_command_path(main, command->pipe->command_str);
-			free(temp);
-			execute_another_function(main, command->pipe);
-		}
-	}
+		main->status = (error == 1) ? error : main->status;
 	return (1);
 }
 

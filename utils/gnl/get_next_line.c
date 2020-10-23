@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 14:44:58 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 16:35:19 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 18:20:23 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,7 @@ int		get_next_line(int fd, char **line)
 			ft_putstr_fd("  \b\b", 1);
 		buff[ret] = '\0';
 		if ((ptr = ft_strchr(buff, '\n')))
-		{
 			*ptr = '\0';
-			if (!(mem = ft_strdup(++ptr)))
-				return (-1);
-		}
 		if (!(write_line(*&line, buff)))
 			return (-1);
 	}
