@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 21:32:33 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 15:14:57 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/23 16:47:12 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	execute(t_main *main)
 			if (main->command->command_str != NULL)
 				execute_another_function(main, main->command);
 		}
+		dup2(main->main_0, 0);
+		dup2(main->main_1, 1);
 		main->command = main->command->next;
 	}
 }
