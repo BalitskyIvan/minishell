@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:17:44 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 18:15:57 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 13:42:20 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int			env_manager(t_main *main, t_command *command, int type)
 	{
 		if (command->args[1] == NULL)
 			print_export(main);
-		else
+		else if (command->pipe == NULL)
 			while (command->args[++i] != NULL)
 				ft_export_env(main, command->args[i]);
 	}
-	else
+	else if (command->pipe == NULL)
 	{
 		while (command->args[++i] != NULL)
 			ft_unset_env(main, command->args[i]);
