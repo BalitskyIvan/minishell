@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:28:19 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/23 18:17:51 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 14:53:34 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int						ft_pwd(t_main *main, t_command *command);
 void					write_to_args(char *arg, char **args, int *i);
 void					join_args(t_command *dst, char **args);
 void					print_export(t_main *main);
+int						hook_my_functions(t_main *main, t_command *command);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:04:49 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/17 14:22:46 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 15:01:46 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ t_command *current)
 {
 	t_command	*new;
 
+	new = NULL;
 	while (str[*start] == ' ')
 		*start = *start + 1;
 	new = catch_endpoint(str, start, main);
 	if (new == NULL)
 		new = catch_pipe(str, start, main);
-	if (new == NULL)
+	if (new == NULL && current != NULL)
 		new = catch_redirect(str, start, main, current);
-	if (new == NULL)
+	if (new == NULL && current != NULL)
 		new = catch_back_redirect(str, start, main, current);
-	if (new == NULL)
+	if (new == NULL && current != NULL)
 		new = catch_double_redirect(str, start, main, current);
 	return (new);
 }

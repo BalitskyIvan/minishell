@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:21:12 by lmallado          #+#    #+#             */
-/*   Updated: 2020/10/18 17:09:07 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 15:01:42 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_command	*get_null_command(int undef)
 
 int			check_parser_error(t_command *start, t_command *current, int mode)
 {
-	if (current->undefined_arg != 0)
+	if (current == NULL || current->undefined_arg != 0)
 	{
 		send_custom_error("Double cuote or something like this catched");
 		free_command_list(start);

@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 11:11:22 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 16:29:46 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 14:54:10 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ int		check_pipe(t_main *main, t_command *command, int pfd[2])
 		{
 			close(pfd[1]);
 			dup2(pfd[0], 0);
-			temp = command->pipe->command_str;
-			command->pipe->command_str =
-			get_command_path(main, command->pipe->command_str);
-			free(temp);
-			execute_another_function(main, command->pipe);
+			if (hook_my_functions(main, command->pipe) == 0)
+			{
+				temp = command->pipe->command_str;
+				command->pipe->command_str =
+				get_command_path(main, command->pipe->command_str);
+				free(temp);
+				execute_another_function(main, command->pipe);
+			}
 			dup2(main->main_0, 0);
 		}
 	}

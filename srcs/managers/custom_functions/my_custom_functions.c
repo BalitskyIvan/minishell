@@ -6,7 +6,7 @@
 /*   By: mklotz <mklotz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 03:06:49 by mklotz            #+#    #+#             */
-/*   Updated: 2020/10/23 18:13:56 by mklotz           ###   ########.fr       */
+/*   Updated: 2020/10/24 15:10:58 by mklotz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int		ft_exit(t_command *command, t_main *main)
 	error = ft_exit_errors(command);
 	error = (error == -1) ? main->status : error;
 	if (command->args[1] != NULL)
-		error = (error == -1) ? ft_atoi(command->args[1]) : error;
+		error = (error == -1 || error == main->status) ?
+								ft_atoi(command->args[1]) : error;
 	if (command->pipe == NULL && error != 1)
 		exit(error);
 	else if (command->pipe != NULL)
@@ -93,16 +94,19 @@ void	ft_get_pipe(t_main *main, t_command *command, int type)
 			pipe(pfd);
 			dup2(pfd[1], 1);
 		}
-		else
+		else if (close(pfd[1]) || 1 == 1)
 		{
-			close(pfd[1]);
 			dup2(main->main_1, 1);
 			dup2(pfd[0], 0);
-			temp = command->command_str;
-			command->command_str = get_command_path(main, command->command_str);
-			execute_another_function(main, command);
+			if (hook_my_functions(main, command) == 0)
+			{
+				temp = command->command_str;
+				command->command_str = get_command_path(main,
+										command->command_str);
+				execute_another_function(main, command);
+				free(temp);
+			}
 			dup2(main->main_0, 0);
-			free(temp);
 		}
 	}
 }
